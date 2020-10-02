@@ -1,6 +1,5 @@
 # Malaria Model Reviews
 
-https://sepmein.github.io/malaria-model-reviews/
 http://165.227.174.250
 
 Reviews of the latest models of malaria control
