@@ -13,4 +13,13 @@ const QUERY_PAPERS = gql`
   }
 `;
 
-export { QUERY_PAPERS };
+const QUERY_VECTORS = gql`
+  query GetVectors {
+    vectors(order_by: { species_name: desc }) {
+      id
+      species_name
+    }
+  }
+`;
+
+export { QUERY_PAPERS, QUERY_VECTORS };

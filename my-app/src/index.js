@@ -14,22 +14,6 @@ const client = new ApolloClient({
   uri: "https://famous-fowl-54.hasura.app/v1/graphql",
   cache: new InMemoryCache(),
 });
-client
-  .query({
-    query: gql`
-      query MyQuery {
-        papers(order_by: { created_at: desc }) {
-          id
-          publish_at
-          title
-          updated_at
-          url
-          created_at
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
 
 ReactDOM.render(
   <React.StrictMode>
