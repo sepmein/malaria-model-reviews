@@ -5,13 +5,14 @@ import Header from "./Header/Header";
 import Home from "./Home/Home";
 import Papers from "./Papers/Papers";
 import Models from "./Models/Models";
-import Vector_list from "./Vectors/list";
+import Interventions from "./Interventions/Interventions";
+import VectorList from "./Vectors/List";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      content: "vectors",
+      content: "home",
     };
     //bind this
     this.handleHeaderClick = this.handleHeaderClick.bind(this);
@@ -23,12 +24,14 @@ class App extends React.Component {
 
   switchContent() {
     switch (this.state.content) {
-      case "papers":
+      case "paper":
         return <Papers />;
-      case "models":
+      case "model":
         return <Models />;
-      case "vectors":
-        return <Vector_list />;
+      case "vector":
+        return <VectorList />;
+      case "intervention":
+        return <Interventions />;
       default:
         return <Home />;
     }

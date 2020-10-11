@@ -19,28 +19,36 @@ class Header extends React.Component {
             Home
           </Nav.Link>
           <Nav.Link
-            href="#Models"
+            href="#Model"
             onClick={() => {
-              this.props.click("models");
+              this.props.click("model");
             }}
           >
-            Models
+            Model
           </Nav.Link>
           <Nav.Link
-            href="#papers"
+            href="#Paper"
             onClick={() => {
-              this.props.click("papers");
+              this.props.click("paper");
             }}
           >
-            Papers
+            Paper
           </Nav.Link>
           <Nav.Link
-            href="#vectors"
+            href="#Vector"
             onClick={() => {
-              this.props.click("vectors");
+              this.props.click("vector");
             }}
           >
-            Vectors
+            Vector
+          </Nav.Link>
+          <Nav.Link
+            href="#Intervention"
+            onClick={() => {
+              this.props.click("intervention");
+            }}
+          >
+            Intervention
           </Nav.Link>
         </Nav>
         <Form inline>

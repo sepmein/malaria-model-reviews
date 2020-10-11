@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import { useQuery } from "@apollo/client";
 import { QUERY_VECTORS } from "../graphql/Queries";
 
-function Vector_list() {
+function VectorList() {
   const { loading, error, data } = useQuery(QUERY_VECTORS);
   let incremental_id = 1;
   if (loading) return <p>Loading...</p>;
@@ -28,4 +28,4 @@ function Vector_list() {
   );
 }
 
-export default Vector_list;
+export default VectorList;
