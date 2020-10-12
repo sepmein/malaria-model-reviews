@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
 import Papers from "./Papers/Papers";
@@ -38,19 +38,17 @@ class App extends React.Component {
   }
   render() {
     return (
-      <Container>
+      <div class="container-fliud">
         <Row>
           <Col>
             <Header click={this.handleHeaderClick} />
           </Col>
         </Row>
+        {this.switchContent()}
         <Row>
-          <Col>{this.switchContent()}</Col>
+          <Col>About</Col>
         </Row>
-        <Row>
-          <Col></Col>
-        </Row>
-      </Container>
+      </div>
     );
   }
 }
