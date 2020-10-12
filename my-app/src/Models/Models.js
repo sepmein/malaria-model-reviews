@@ -1,7 +1,7 @@
 import React from "react";
 import katex from "katex";
 import ReactMarkdown from "react-markdown";
-import ModelMermaid from "../Mermaid/Models";
+import { ModelMermaid } from "../Mermaid/Models";
 
 class Models extends React.Component {
   constructor(props) {
