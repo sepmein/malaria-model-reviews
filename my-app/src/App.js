@@ -6,7 +6,7 @@ import Home from "./Home/Home";
 import Papers from "./Papers/Papers";
 import Models from "./Models/Models";
 import Interventions from "./Interventions/Interventions";
-import VectorList from "./Vectors/List";
+import Vectors from "./Vectors/Vectors";
 
 class App extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class App extends React.Component {
       case "model":
         return <Models />;
       case "vector":
-        return <VectorList />;
+        return <Vectors />;
       case "intervention":
         return <Interventions />;
       default:
