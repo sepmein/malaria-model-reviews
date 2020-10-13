@@ -6,6 +6,7 @@ import Mermaid from "./Mermaid";
 const graph = `
     stateDiagram-v2
         state Human {
+          [*] --> Susceptible
         Susceptible --> Infected
         Infected --> Treated
         Infected --> Disease
@@ -34,7 +35,6 @@ const mosquito_feeding_cycle = `
       without_ITN --> join_resting
       join_resting --> resting_and_oviposition
       animal_blood --> join_resting
-      with_ITN --> join_resting
       Survived --> join_resting
       resting_and_oviposition --> mosquito: repeat
     }
