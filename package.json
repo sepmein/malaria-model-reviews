@@ -1,7 +1,7 @@
 {
-  "name": "my-app",
+  "name": "malaria-model-review",
   "version": "0.2.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@apollo/client": "^3.2.2",
     "@testing-library/jest-dom": "^4.2.4",
