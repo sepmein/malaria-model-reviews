@@ -1,35 +1,36 @@
-import React from "react";
-import katex from "katex";
-import ReactMarkdown from "react-markdown";
-import { ModelMermaid } from "../Mermaid/Models";
+import React from 'react'
+// import katex from 'katex'
+// import ReactMarkdown from 'react-markdown'
+import { ModelMermaid } from '../Mermaid/Models'
 
 class Models extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      markdown: "",
-    };
+      markdown: ''
+    }
   }
-  componentDidMount() {
-    const modelsMarkdown = require("./Models.md");
+
+  componentDidMount () {
+    const modelsMarkdown = require('./Models.md')
     fetch(modelsMarkdown)
       .then((response) => {
-        return response.text();
+        return response.text()
       })
       .then((text) => {
         this.setState({
-          markdown: text,
-        });
-      });
+          markdown: text
+        })
+      })
   }
 
-  render() {
+  render () {
     return (
       <div>
         <ModelMermaid />
       </div>
-    );
+    )
   }
 }
 
-export default Models;
+export default Models

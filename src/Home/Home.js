@@ -1,12 +1,12 @@
-import React from "react";
-import { Jumbotron, Button } from "react-bootstrap";
-import { useQuery } from "@apollo/client";
-import { QUERY_HOME } from "../graphql/Queries";
+import React from 'react'
+import { Jumbotron } from 'react-bootstrap'
+import { useQuery } from '@apollo/client'
+import { QUERY_HOME } from '../graphql/Queries'
 
-function Home() {
-  const { loading, error, data } = useQuery(QUERY_HOME);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+function Home () {
+  const { loading, error, data } = useQuery(QUERY_HOME)
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :(</p>
   return (
     <div>
       <Jumbotron>
@@ -19,8 +19,9 @@ function Home() {
       <h3>Compartmental</h3>
       <p>TODO definition of compartmental model</p>
       <h3>Stochastic</h3>
+      <h4></h4>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

@@ -1,8 +1,5 @@
-# Malaria Model Reviews
-
-http://165.227.174.250
-
-Reviews of the latest models of malaria control
+# Malaria Model Review
+The source code of the malaria model review. Preview at http://165.227.174.250
 
 ## Effects of pyrethroid resistance on the cost effectiveness of a mass distribution of long-lasting insecticidal nets: a modelling study
 doi: https://doi.org/10.1186/1475-2875-12-77
