@@ -1,5 +1,5 @@
-import React from "react";
-import Mermaid from "./Mermaid";
+import React from 'react'
+import Mermaid from './Mermaid'
 
 // mermaid diagrams
 
@@ -19,9 +19,9 @@ const graph = `
         Treated --> Prophylatic
         Prophylatic --> Susceptible
     }
-`;
+`
 
-const mosquito_feeding_cycle = `
+const mosquitoFeedingCycle = `
   stateDiagram-v2
     state vector {
       [*] --> mosquito
@@ -38,18 +38,18 @@ const mosquito_feeding_cycle = `
       Survived --> join_resting
       resting_and_oviposition --> mosquito: repeat
     }
-`;
+`
 
-function ModelMermaid() {
-  return <Mermaid id="graph1" content={graph} />;
+function ModelMermaid () {
+  return <Mermaid id="graph1" content={graph} />
 }
 
-function MosquitoFeedingCycle() {
+function MosquitoFeedingCycle () {
   return (
     <Mermaid
       id="moquito_feeding_cycle_mermaid"
-      content={mosquito_feeding_cycle}
+      content={mosquitoFeedingCycle}
     />
-  );
+  )
 }
-export { ModelMermaid, MosquitoFeedingCycle };
+export { ModelMermaid, MosquitoFeedingCycle }

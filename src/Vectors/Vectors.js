@@ -1,42 +1,47 @@
-import React from "react";
-import { Row, Col, ListGroup, Badge } from "react-bootstrap";
-import VectorList from "./List";
-import { MosquitoFeedingCycle } from "../Mermaid/Models";
+import React from 'react'
+// import { Row, Col, ListGroup, Badge } from 'react-bootstrap'
+import VectorList from './List'
+import { MosquitoFeedingCycle } from '../Mermaid/Models'
 
 class Vectors extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      content: "vector",
-    };
+      content: 'vector'
+    }
   }
-  handleClick(i) {}
-  render() {
+
+  handleClick () {}
+  render () {
     return (
       <div>
         <div className="row border bg-light text-dark p-3">
           <div className="col">
             <h2 className="display-3 text-center">Mosquito Feeding Cycle</h2>
-            <button type="button" class="btn btn-outline-primary">
+            <button type="button" className="btn btn-outline-primary">
               LLINs
-            </button>{" "}
-            <button type="button" class="btn btn-outline-secondary">
+            </button>{' '}
+            <button type="button" className="btn btn-outline-secondary">
               IRS(working)
             </button>
-            <button type="button" class="btn btn-outline-info float-right">
-              Papers <span class="badge badge-light">2</span>
+            <button type="button" className="btn btn-outline-info float-right">
+              Papers <span className="badge badge-light">2</span>
             </button>
-            <button type="button" class="btn btn-outline-dark float-right">
+            <button type="button" className="btn btn-outline-dark float-right">
               Papameters
             </button>
             <MosquitoFeedingCycle />
             <div className="hide">
-              <span class="badge badge-pill badge-primary">HBI</span>
-              <span class="badge badge-pill badge-secondary">
+              <span className="badge badge-pill badge-primary">HBI</span>
+              <span className="badge badge-pill badge-secondary">
                 Host searching dates
               </span>
-              <span class="badge badge-pill badge-success">Survival rate</span>
-              <span class="badge badge-pill badge-danger">Resting dates</span>
+              <span className="badge badge-pill badge-success">
+                Survival rate
+              </span>
+              <span className="badge badge-pill badge-danger">
+                Resting dates
+              </span>
             </div>
           </div>
         </div>
@@ -45,7 +50,7 @@ class Vectors extends React.Component {
             <div className="col display-4 m-3">Behavioural Resistance</div>
           </div>
           <div className="row">
-            {" "}
+            {' '}
             <div className="col-4 text-center">
               <p>
                 <strong>Against LLINs:</strong> Mosquitos tend to bite during
@@ -65,22 +70,22 @@ class Vectors extends React.Component {
                 Uniform exposure / Non-uniform exposure
               </h5>
               <div>
-                <span class="badge badge-secondary float-left">LOW</span>
-                <span class="badge badge-success float-right">HIGH</span>
-                <p class="text-center">LLINs effectiveness</p>
+                <span className="badge badge-secondary float-left">LOW</span>
+                <span className="badge badge-success float-right">HIGH</span>
+                <p className="text-center">LLINs effectiveness</p>
               </div>
-              <div class="progress">
+              <div className="progress">
                 <div
-                  class="progress-bar w-75"
+                  className="progress-bar w-75"
                   role="progressbar"
                   aria-valuenow="75"
                   aria-valuemin="0"
                   aria-valuemax="100"
                 ></div>
               </div>
-              <div class="mt-3 mb-5">
-                <span class="badge badge-info float-left">NON-Uniform</span>
-                <span class="badge badge-info float-right">Uniform</span>
+              <div className="mt-3 mb-5">
+                <span className="badge badge-info float-left">NON-Uniform</span>
+                <span className="badge badge-info float-right">Uniform</span>
               </div>
               <div className="mt-3">
                 <p>
@@ -129,8 +134,8 @@ class Vectors extends React.Component {
           </Col>
         </Row> */}
       </div>
-    );
+    )
   }
 }
 
-export default Vectors;
+export default Vectors

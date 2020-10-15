@@ -1,13 +1,13 @@
-import React from "react";
-import { Table } from "react-bootstrap";
-import { useQuery } from "@apollo/client";
-import { QUERY_PAPERS } from "../graphql/Queries";
+import React from 'react'
+import { Table } from 'react-bootstrap'
+import { useQuery } from '@apollo/client'
+import { QUERY_PAPERS } from '../graphql/Queries'
 
-function Papers() {
-  const { loading, error, data } = useQuery(QUERY_PAPERS);
-  let incremental_id = 1;
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+function Papers () {
+  const { loading, error, data } = useQuery(QUERY_PAPERS)
+  let incrementalId = 1
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :(</p>
   return (
     <Table>
       <thead>
@@ -19,11 +19,11 @@ function Papers() {
         </tr>
       </thead>
       <tbody>
-        {data.papers.map(({ id, title, publish_at, url }) => (
+        {data.papers.map(({ id, title, publish_at: publishAt, url }) => (
           <tr key={id}>
-            <td>{incremental_id++}</td>
+            <td>{incrementalId++}</td>
             <td>{title}</td>
-            <td>{publish_at}</td>
+            <td>{publishAt}</td>
             <td>
               <a href={url}>@</a>
             </td>
@@ -31,7 +31,7 @@ function Papers() {
         ))}
       </tbody>
     </Table>
-  );
+  )
 }
 
-export default Papers;
+export default Papers

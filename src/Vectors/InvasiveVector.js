@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
-function InvasiveVector() {
-  return <div>Invasive Vector</div>;
+function InvasiveVector () {
+  return <div>Invasive Vector</div>
 }
 
-export default InvasiveVector;
+export default InvasiveVector

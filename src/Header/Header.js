@@ -1,11 +1,12 @@
-import React from "react";
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import React from 'react'
+import { Navbar, Nav } from 'react-bootstrap'
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
-  render() {
+
+  render () {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Malaria Modeling</Navbar.Brand>
@@ -13,7 +14,7 @@ class Header extends React.Component {
           <Nav.Link
             href="#home"
             onClick={() => {
-              this.props.click("home");
+              this.props.click('home')
             }}
           >
             Home
@@ -21,7 +22,7 @@ class Header extends React.Component {
           <Nav.Link
             href="#Model"
             onClick={() => {
-              this.props.click("model");
+              this.props.click('model')
             }}
           >
             Model
@@ -29,7 +30,7 @@ class Header extends React.Component {
           <Nav.Link
             href="#Paper"
             onClick={() => {
-              this.props.click("paper");
+              this.props.click('paper')
             }}
           >
             Paper
@@ -37,7 +38,7 @@ class Header extends React.Component {
           <Nav.Link
             href="#Vector"
             onClick={() => {
-              this.props.click("vector");
+              this.props.click('vector')
             }}
           >
             Vector
@@ -45,15 +46,15 @@ class Header extends React.Component {
           <Nav.Link
             href="#Intervention"
             onClick={() => {
-              this.props.click("intervention");
+              this.props.click('intervention')
             }}
           >
             Intervention
           </Nav.Link>
         </Nav>
       </Navbar>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

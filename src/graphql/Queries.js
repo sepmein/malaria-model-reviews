@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client'
 
 const QUERY_HOME = gql`
   query HomeQuery {
@@ -13,7 +13,7 @@ const QUERY_HOME = gql`
       }
     }
   }
-`;
+`
 
 const QUERY_PAPERS = gql`
   query GetPapers {
@@ -26,7 +26,7 @@ const QUERY_PAPERS = gql`
       created_at
     }
   }
-`;
+`
 
 const QUERY_VECTORS = gql`
   query GetVectors {
@@ -35,6 +35,6 @@ const QUERY_VECTORS = gql`
       species_name
     }
   }
-`;
+`
 
-export { QUERY_HOME, QUERY_PAPERS, QUERY_VECTORS };
+export { QUERY_HOME, QUERY_PAPERS, QUERY_VECTORS }
