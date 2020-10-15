@@ -1,7 +1,7 @@
-import React from "react";
-import { Jumbotron, Button } from "react-bootstrap";
+import React from 'react'
+// import { Jumbotron, Button } from 'react-bootstrap'
 
-function Interventions() {
+function Interventions () {
   return (
     <div>
       <div className="row">
@@ -40,7 +40,7 @@ function Interventions() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Interventions;
+export default Interventions
