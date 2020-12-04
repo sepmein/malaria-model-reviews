@@ -5,7 +5,8 @@ import { QUERY_VECTORS } from '../graphql/Queries'
 
 function VectorList () {
   const { loading, error, data } = useQuery(QUERY_VECTORS)
-  let incremental_id = 1
+  // eslint-disable-next-line camelcase
+  let incrementalId = 1
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
   return (
@@ -17,10 +18,10 @@ function VectorList () {
         </tr>
       </thead>
       <tbody>
-        {data.vectors.map(({ id, species_name }) => (
+        {data.vector.map(({ vector_uid: id, species_name: speciesName }) => (
           <tr key={id}>
-            <td>{incremental_id++}</td>
-            <td>{species_name}</td>
+            <td>{incrementalId++}</td>
+            <td>{speciesName}</td>
           </tr>
         ))}
       </tbody>

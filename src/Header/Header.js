@@ -1,11 +1,8 @@
 import React from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
+import PropTypes from 'prop-types'
 
 class Header extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
   render () {
     return (
       <Navbar bg="dark" variant="dark">
@@ -55,6 +52,10 @@ class Header extends React.Component {
       </Navbar>
     )
   }
+}
+
+Header.propTypes = {
+  click: PropTypes.func
 }
 
 export default Header

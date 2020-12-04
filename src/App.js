@@ -1,44 +1,45 @@
-import React from "react";
-import "./App.css";
-import { Row, Col } from "react-bootstrap";
-import Header from "./Header/Header";
-import Home from "./Home/Home";
-import Papers from "./Papers/Papers";
-import Models from "./Models/Models";
-import Interventions from "./Interventions/Interventions";
-import Vectors from "./Vectors/Vectors";
+import React from 'react'
+import './App.css'
+import { Row, Col } from 'react-bootstrap'
+import Header from './Header/Header'
+import Home from './Home/Home'
+import Papers from './Papers/Papers'
+import Models from './Models/Models'
+import Interventions from './Interventions/Interventions'
+import Vectors from './Vectors/Vectors'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = {
-      content: "home",
-    };
-    //bind this
-    this.handleHeaderClick = this.handleHeaderClick.bind(this);
+      content: 'home'
+    }
+    // bind this
+    this.handleHeaderClick = this.handleHeaderClick.bind(this)
   }
 
-  handleHeaderClick(i) {
-    this.setState({ content: i });
+  handleHeaderClick (i) {
+    this.setState({ content: i })
   }
 
-  switchContent() {
+  switchContent () {
     switch (this.state.content) {
-      case "paper":
-        return <Papers />;
-      case "model":
-        return <Models />;
-      case "vector":
-        return <Vectors />;
-      case "intervention":
-        return <Interventions />;
+      case 'paper':
+        return <Papers />
+      case 'model':
+        return <Models />
+      case 'vector':
+        return <Vectors />
+      case 'intervention':
+        return <Interventions />
       default:
-        return <Home />;
+        return <Home />
     }
   }
-  render() {
+
+  render () {
     return (
-      <div class="container-fliud">
+      <div className="container-fliud">
         <Row>
           <Col>
             <Header click={this.handleHeaderClick} />
@@ -49,8 +50,8 @@ class App extends React.Component {
           <Col>About</Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

@@ -19,16 +19,18 @@ function Papers () {
         </tr>
       </thead>
       <tbody>
-        {data.papers.map(({ id, title, publish_at: publishAt, url }) => (
-          <tr key={id}>
-            <td>{incrementalId++}</td>
-            <td>{title}</td>
-            <td>{publishAt}</td>
-            <td>
-              <a href={url}>@</a>
-            </td>
-          </tr>
-        ))}
+        {data.paper.map(
+          ({ paper_uid: paperUid, title, publish_at: publishAt, url }) => (
+            <tr key={paperUid}>
+              <td>{incrementalId++}</td>
+              <td>{title}</td>
+              <td>{publishAt}</td>
+              <td>
+                <a href={url}>@</a>
+              </td>
+            </tr>
+          )
+        )}
       </tbody>
     </Table>
   )

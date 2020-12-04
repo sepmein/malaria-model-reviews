@@ -1,15 +1,15 @@
 import { gql } from '@apollo/client'
 
 const QUERY_HOME = gql`
-  query HomeQuery {
-    papers_aggregate {
+  query MyQuery {
+    paper_aggregate {
       aggregate {
-        count(columns: id)
+        count(columns: paper_uid)
       }
     }
-    vectors_aggregate {
+    vector_aggregate {
       aggregate {
-        count(columns: id)
+        count(columns: vector_uid)
       }
     }
   }
@@ -17,8 +17,8 @@ const QUERY_HOME = gql`
 
 const QUERY_PAPERS = gql`
   query GetPapers {
-    papers(order_by: { created_at: desc }) {
-      id
+    paper(order_by: { created_at: desc }) {
+      paper_uid
       publish_at
       title
       updated_at
@@ -30,8 +30,8 @@ const QUERY_PAPERS = gql`
 
 const QUERY_VECTORS = gql`
   query GetVectors {
-    vectors(order_by: { species_name: desc }) {
-      id
+    vector(order_by: { species_name: desc }) {
+      vector_uid
       species_name
     }
   }
