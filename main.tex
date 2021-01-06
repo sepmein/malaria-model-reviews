@@ -1,15 +1,197 @@
-\documentclass[12pt, letterpaper]{article}
-\usepackage[utf8]{inputenc, comment}
+\documentclass[a4paper, 12pt, twoside]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[acronym, toc]{glossaries}
+\usepackage{comment}
+\usepackage{nomencl}
+\usepackage{xcolor}
+% \usepacakge{minted}
+
+% color
+\pagecolor{black}
+\color{white}
+
+% glossaries
+\makeglossaries
+
+\newacronym{llins}{LLINs}{Long Lasting Insecticide Treated Nets}
+\newacronym{abm}{ABM}{Agent-Based Models}
+\newacronym{irs}{IRS}{Indoor Residual Spraying}
+\newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
+\newacronym{mcmc}{MCMC}{Markov Chain Monte Carlo}
+\newglossaryentry{rts}
+{
+	name=RTS\,S,
+	description={RTS\,S/AS01 is a recombinant protein-based malaria vaccine.}
+}
+\newglossaryentry{eir}
+{
+	name=EIR,
+	description={Entomological Infectious Rate or infected bites per person per year}
+}
+
+
+% nomenclature
+\makenomenclature
+
+\nomenclature{$c$}{Speed of light in a vacuum inertial frame}
+
+% title page
 \title{Malaria Modelling}
 \author{Chunzhe ZHANG}
 \date{Jan 2021}
+
 \begin{document}
+
 \begin{titlepage}
-	\maketitle
+\maketitle
 \end{titlepage}
-\begin{abstract}
-	This document is all about malaria modelling.
-\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
 All about malaria modelling
+
+\section{Mathematical Methods}
+
+Types of models:
+
+\subsection{Compartmental Model}
+
+Commonly used in describing disease. 
+
+Deterministic Model 
+
+TODO: add definition
+
+\subsubsection{SIR Model}
+
+\subsubsection{SEIR Model}
+
+\subsubsection{Other Variation}
+
+\subsection{Stochastic Model}
+Also known as epidemiological agent-based model, or ABM, 
+Individual based, simulated version of model, require multiple run to simulate the 
+
+TODO: add definition
+
+\subsection{Forward Step - From Mathematical Formula to Real World}
+
+\subsection{Fitting to Real World Data}
+\gls{mcmc} is mostly commonly used method to fit real world data.
+
+\gls{mcmc}
+
+\subsection{Estimating Uncertainty}
+
+\section{Entomology}
+\subsection{Endophily}
+Research papers often take endophily as a fixed parameter in the model, which means for each different vector there is one according level of endophily.
+
+And the model used in the research often use a 
+
+Does endophily change over time or based on the seasons? Often in the cold weather, some vector species tend to reside in the indoor environment. Not covered in the papers.
+
+TODO:
+Create a database from research papers to see the different settings of endophily of vector species
+
+\paragraph{Daily survival rate}
+
+\paragraph{Human visiting rate}
+
+\paragraph{Extrinsic Incubation Period}
+Average incubation period in days
+Extrinsic incubation period
+Features describing a group of vectors(may influenced by interventions)
+The composition of the species of given an area
+The distribution of vectors
+The overall birth rates of vectors
+	Types of birth rates defined in the papers
+fixed (constant)
+The distribution of the length of feeding cycle
+Related to species, interventions used
+TODO: add two figures(using normal distribution)
+Distribution before intervention
+Distribution after intervention
+
+The distribution of the life span of a given group
+
+\paragraph{Cycling Repeating Rate}
+Cycling repeating rate
+
+\paragraph{Flying ability}
+How long could it fly in a given time
+
+Mathematical function:
+
+A spatial distribution for a given time, e.g.
+
+The ability could determine whether an infectious bite could be transmitted from one to another in a long distance.
+
+TODO:
+Add distribution example
+Add mathematical function
+Collect information from papers and create a database
+\paragraph{HBI}
+HBI - human blood index
+	Related to species, intervention
+	Usage of LLINs and/or IRS will discourage human biting divert more bites onto non-human hosts
+
+	The birth rates may vary in the different settings. E.g. for a colony of germ in the , the reproduction process follows to a logistic growth:
+TODO: added an example figure of logistic growth
+	
+	Does the birth rate of vectors follow the same line?
+
+\section{Interventions}
+
+Two core interventions defined by WHO: \gls{llins}, \gls{irs}
+
+\subsection{Costs}
+Cost of Interventions increases when coverage increase. \cite{Winskill2017a} considered two approaches to simulate the function:
+\begin{itemize}
+	\item linear increases in cost associated with increasing coverage
+	\item delivery cost increases logarithmically with increasing coverage
+\end{itemize}
+
+Total cost was assumed to consist of two components: the commodity and the delivery. The commodity part of cost follows U-shape curves follows the marginal cost formula.
+
+$$ MC = \frac{\Delta C}{\Delta Q} $$
+
+In the short run, marginal cost ($MC$) drops when quantity($Q$) increases, then increase as $Q$ increases.
+
+The delivery part increase as coverage increase. For the linear assumption, j
+
+\section{Diseases}
+States:
+\begin{itemize}
+	\item Susceptible
+	\item Treating
+	\item Disease(with symptom)
+	\item Patently Asymptomatic
+	\item Sub-patent stage
+	\item Prophylactic protection
+\end{itemize}
+\section{Demography}
+\subsection{Age}
+Human population data
+Often lack in some areas
+Could be estimated through satellite observations
+	Paper high resolution population maps for low income nations: combining land cover and census in East Africa
+
+\subsection{Birth and Death}
+\subsection{In and Out}
+
+\section{immunity}
+
+\section{Parameters}
+
+% appendix
+\appendix
+\printglossaries
+\printnomenclature
+\bibliographystyle{unsrt}
+\bibliography{library}
 
 \end{document}
