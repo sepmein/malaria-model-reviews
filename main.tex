@@ -20,11 +20,13 @@
 \newacronym{irs}{IRS}{Indoor Residual Spraying}
 \newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
 \newacronym{mcmc}{MCMC}{Markov Chain Monte Carlo}
+
 \newglossaryentry{rts}
 {
 	name=RTS\,S,
 	description={RTS\,S/AS01 is a recombinant protein-based malaria vaccine.}
 }
+
 \newglossaryentry{eir}
 {
 	name=EIR,
@@ -38,7 +40,7 @@
 \nomenclature{$c$}{Speed of light in a vacuum inertial frame}
 
 % title page
-\title{Malaria Modelling}
+\title{An Introduction on Mathematical Modelling in Malaria Control}
 \author{Chunzhe ZHANG}
 \date{Jan 2021}
 
@@ -51,8 +53,7 @@
 \tableofcontents
 
 \section{Introduction}
-All about malaria modelling
-
+Mathematical models is a vital way to help public health practitioners to policy decisions. Thus, it is crucial to know how they are made and the assumptions on which they are built. Mathematical models has been introduced into malaria control world for many years. History could go back to 1920s, when Ronald Ross first introduced 
 \section{Mathematical Methods}
 
 Types of models:
@@ -72,10 +73,9 @@ TODO: add definition
 \subsubsection{Other Variation}
 
 \subsection{Stochastic Model}
-Also known as epidemiological agent-based model, or ABM, 
-Individual based, simulated version of model, require multiple run to simulate the 
+Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}. \gls{abm} is a class of computational models to simulate actions and interactions between "agents". The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}. More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
 
-TODO: add definition
+Individual based, simulated version of model, require multiple run to simulate.
 
 \subsection{Forward Step - From Mathematical Formula to Real World}
 
@@ -178,7 +178,7 @@ States:
 Human population data
 Often lack in some areas
 Could be estimated through satellite observations
-	Paper high resolution population maps for low income nations: combining land cover and census in East Africa
+Paper high resolution population maps for low income nations: combining land cover and census in East Africa
 
 \subsection{Birth and Death}
 \subsection{In and Out}
