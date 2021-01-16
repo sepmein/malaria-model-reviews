@@ -15,11 +15,72 @@
 % glossaries
 \makeglossaries
 
+\newacronym{bmgf}{BMGF}{Bill & Melinda Gates Foundation}
+\newacronym{pamca}{PAMCA}{Pan-African Mosquito Control Association}
+\newacronym{gdg}{GDG}{guideline development group}
+\newacronym{msat}{MSAT}{mass screening and treatment approach}
 \newacronym{llins}{LLINs}{Long Lasting Insecticide Treated Nets}
 \newacronym{abm}{ABM}{Agent-Based Models}
 \newacronym{irs}{IRS}{Indoor Residual Spraying}
 \newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
 \newacronym{mcmc}{MCMC}{Markov Chain Monte Carlo}
+\newacronym{rct}{RCT}{Clustered Randomized Control Trial}
+\newacronym{pbo}{PBO}{piperonyl butuxide}
+\newacronym{eht}{EHT}{Experimental Hut Trial}
+
+\newglossaryentry{endophilic}
+{
+  name=endophilic,
+  description={indoor-resting}
+}
+
+\newglossaryentry{exophilic}
+{
+  name=exophilic,
+  description={outdoor-resting}
+}
+
+\newglossaryentry{exphagic}
+{
+  name=exphagic,
+  description={outdoor-biting}
+}
+
+\newglossaryentry{zoophagic}
+{
+  name=zoophagic,
+  description={blood feeding not only from human}
+}
+
+\newglossaryentry{carbamates}
+{
+  name=carbamates,
+  description={Carbamates are a class of insecticides structurally and mechanistically similar to organophosphate (OP) insecticides. Carbamates are N-methyl Carbamates derived from a carbamic acid and cause carbamylation of acetylcholinesterase at neuronal synapses and neuromuscular junctions.}
+}
+
+\newglossaryentry{bendiocarb}
+{
+  name=bendiocarb,
+  description={Bendiocarb is an acutely toxic carbamate insecticide used in public health and agriculture and is effective against a wide range of nuisance and disease vector insects. Many bendiocarb products are or were sold under the tradenames "Ficam" and "Turcam."}
+}
+
+\newglossaryentry{carbosulfan}
+{
+  name=carbosulfan,
+  description={Carbosulfan is an organic compound adherent to the carbamate class. At normal conditions, it is brown viscous liquid. It is not very stable; it decomposes slowly at room temperature. Its solubility in water is low but it is miscible with xylene, hexane, chloroform, dichloromethane, methanol and acetone.}
+}
+
+\newglossaryentry{IRAC MoA}
+{
+  name=IRAC MoA,
+  description={The IRAC MoA classification scheme covers more than 25 different modes of action and at least 55 different chemical classes. Diversity is the spice of resistance management by chemical means and thus it provides an approach to IRM providing a straightforward means to identify potential rotation/alternation options.}
+}
+
+\newglossaryentry{IVCC}
+{
+  name=IVCC,
+  description={IVCC is the only Product Development Partnership (PDP) working in vector control. IVCC was established in 2005, through an initial \$50million grant to the Liverpool School of Tropical Medicine (LSTM) from the Bill & Melinda Gates Foundation, and is a registered charity in the UK. We work with stakeholders to facilitate the development of novel and improved public health insecticides and formulations to combat the rapidly growing problem of insecticide resistance. We bring together partners from industry, the public sector and academia to create new solutions to prevent disease transmission. By focusing resources and targeting practical scientific solutions we accelerate the process from innovation to impact.}
+}
 
 \newglossaryentry{rts}
 {
@@ -31,6 +92,18 @@
 {
 	name=EIR,
 	description={Entomological Infectious Rate or infected bites per person per year}
+}
+
+\newglossaryentry{eip}
+{
+  name=extrinsic incubation period,
+  description={Once ingested by a mosquito, malaria parasites must undergo development within the mosquito before they are infectious to humans. The time required for development in the mosquito (the extrinsic incubation period) takes 9 days or longer, depending on the parasite species and the temperature.}
+}
+
+\newglossaryentry{intra specific competition}
+{
+  name=intra-specific competition,
+  description={Intraspecific competition is an interaction in population ecology, whereby members of the same species compete for limited resources. This leads to a reduction in fitness for both individuals, but the most fit individual survives and is able to reproduce. By contrast, interspecific competition occurs when members of different species compete for a shared resource.}
 }
 
 
@@ -54,15 +127,14 @@
 
 \section{Introduction}
 Mathematical models is a vital way to help public health practitioners to policy decisions. Thus, it is crucial to know how they are made and the assumptions on which they are built. Mathematical models has been introduced into malaria control world for many years. History could go back to 1920s, when Ronald Ross first introduced 
+
 \section{Mathematical Methods}
 
-Types of models:
+Two types of models are commonly used in the epidemiology world: the deterministic version and stochastic version.
 
-\subsection{Compartmental Model}
+\subsection{Deterministic Model}
 
 Commonly used in describing disease. 
-
-Deterministic Model 
 
 TODO: add definition
 
@@ -73,6 +145,9 @@ TODO: add definition
 \subsubsection{Other Variation}
 
 \subsection{Stochastic Model}
+
+Stochastic means has a random value.
+
 Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}. \gls{abm} is a class of computational models to simulate actions and interactions between "agents". The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}. More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
 
 Individual based, simulated version of model, require multiple run to simulate.
@@ -86,8 +161,20 @@ Individual based, simulated version of model, require multiple run to simulate.
 
 \subsection{Estimating Uncertainty}
 
+\section{Model Assumptions}
+Models are only as good as they made reasonable assumptions. In malaria mathematical modelling world, several assumptions have been made. The most important ones ranked as follows,
+
+1. Homogeneous mixing of population: in the deterministic types of model, individuals in the same state groups are considered as the same, e.g. Susceptible group has an average probability of transit to infectious group. But the assumption is rarely justified.
+
+
+
 \section{Entomology}
-\subsection{Endophily}
+
+The gonotrophic cycle of a female mosquito begins with a blood meal taken from a host. The mosquito will rest and wait for digestion. It may take several blood meals before searching for a breeding site for oviposition. After egg maturation, the mosquito tries to find a suitable site and then lay 80 - 100 eggs.
+
+\subsection{Adult Mosquitoes}
+
+\subsubsection{Endophily}
 Research papers often take endophily as a fixed parameter in the model, which means for each different vector there is one according level of endophily.
 
 And the model used in the research often use a 
@@ -137,16 +224,92 @@ Collect information from papers and create a database
 \paragraph{HBI}
 HBI - human blood index
 	Related to species, intervention
-	Usage of LLINs and/or IRS will discourage human biting divert more bites onto non-human hosts
+  Usage of \gls{llins} and/or \gls{irs} will discourage human biting divert more bites onto non-human hosts
 
 	The birth rates may vary in the different settings. E.g. for a colony of germ in the , the reproduction process follows to a logistic growth:
 TODO: added an example figure of logistic growth
 	
 	Does the birth rate of vectors follow the same line?
 
+\subsection{Larval}
+
+Larvea feeds on yeasts, bacteria and organic matters. After four moults, larvea become pupae, and then develop into adult mosquitoes.
+
 \section{Interventions}
 
 Two core interventions defined by WHO: \gls{llins}, \gls{irs}
+
+Effects of \gls{llins} and \gls{irs}:
+
+\begin{itemize}
+\item Deferred from entering, measured by by the number of mosquitoes caught in a hut with an intervention compared to a control hut
+\item enter the hut and either exit without feeding
+\item Die
+\item Successfully blood-fed
+\item Lower down the survival rates for adults mosquitoes in \gls{eip} 
+\item less eggs being oviposited in breeding sites
+\end{itemize}
+
+\subsection{effectiveness}
+
+Prevalence results from Uganda \gls{rct}\cite{Staedke2020}:
+\begin{center}
+\begin{tabular}{ c c c c }
+  Type & 6 months & 12 months & 18 months\\ 
+  \gls{llins} & 15 & 13 & 14 \\  
+  \gls{pbo} & 11 & 11 & 12\\
+\end{tabular}
+\end{center}
+
+\subsection{attrition}
+From Tanzania\cite{Protopopoff2018} \gls{rct}, the permethrin and \gls{pbo} concentration dropped at a steady rate for both standard \gls{llins} and Pyrethroid-PBO \gls{llins}:
+
+\begin{center}
+\begin{tabular}{ c c c c }
+  chemical & 0 months & 12 months & 21 months\\ 
+  Permethrin(Regular) & 21.4 & 21.5 & 16.7\\  
+  Permethrin(PBO) & 20.9 & 14.7 & 12.2\\
+  PBO & 9.5 & 2.9 & 1.6
+\end{tabular}
+\end{center}
+
+From Uganda\cite{Staedke2020}, the \gls{pbo} dropped:
+\begin{center}
+\begin{tabular}{ c c c }
+  chemical & 0 months & 12 months\\ 
+  \gls{pbo}PermaNet 3.0 & 26.18 & 15.28\\  
+  \gls{pbo}Olyset Plus & 8.17 & 5.04\\  
+\end{tabular}
+\end{center}
+
+Usage attrition from Tanzania\cite{Protopopoff2018}:
+
+\begin{center}
+\begin{tabular}{ c c c }
+  index & 4 months & 21 months\\ 
+  ownership & 97.6 & - \\  
+  access & 89.6 & 70.2\\
+  usage & 76.9 & 50.6
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ c c c c }
+  \gls{irs} & 0 months & 9 months & 12 months\\ 
+  Actellic 300CS & 0.99 & 0.82 & 0.59  \\  
+\end{tabular}
+\end{center}
+
+Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the decease in usage:
+
+\begin{center}
+\begin{tabular}{ c c c c }
+  index & 6 months & 12 months & 18 months\\ 
+  ownership & 97 & 95 & 91 \\  
+  adequate coverage & 71 & 63 & 51\\
+  usage & 85 & 79 & 73
+\end{tabular}
+\end{center}
 
 \subsection{Costs}
 Cost of Interventions increases when coverage increase. \cite{Winskill2017a} considered two approaches to simulate the function:
@@ -181,11 +344,30 @@ Could be estimated through satellite observations
 Paper high resolution population maps for low income nations: combining land cover and census in East Africa
 
 \subsection{Birth and Death}
+
 \subsection{In and Out}
 
 \section{immunity}
 
+\section{Resistance}
+\begin{itemize}
+  \item Discriminating Bioassay
+  \item Intensity Bioassay
+  \item Mechanism Bioassay
+  \item Non-standard Bioassays
+\end{itemize}
+
+Resistance level in discriminating bioassay: the percentage of mosquitoes surviving 24-hours following exposure.
+
+
+\section{Environment}
 \section{Parameters}
+
+Average eggs lay by female \textit{Anopheles}: 80 - 100 eggs.
+
+Duration of the larval period depends on temperature, in tropical areas, lasts 7 - 15 days.\cite{bayoh_lindsay_2003}
+
+Carrying capacity in aquatic stage: describe how many mosquito larvae/pupae an environment can support
 
 % appendix
 \appendix
