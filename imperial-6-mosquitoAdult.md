@@ -1,49 +1,49 @@
 ```mermaid
 flowchart LR
 %%{init: {'flowchart': {'useMaxWidth':false}}}%%
-  %%%%%%%%%%%
-  %% Mosquito
-  %%%%%%%%%%%
-  subgraph mosquito
+%%%%%%%%%%%
+%% Mosquito
+%%%%%%%%%%%
+subgraph mosquito
 
-    subgraph mosquito_states_t0 [States]
-      Sv_t0[Susceptible]
-      Ev_t0[Latently Infected]
-      Iv_t0[Infectious Mosquito]
-    end
+  subgraph mosquito_states_t0 [States]
+    Sv_t0[Susceptible]
+    Ev_t0[Latently Infected]
+    Iv_t0[Infectious Mosquito]
+  end
 
-    subgraph mosquito_states_t1 [States]
-      Sv_t1[Susceptible]
-      Ev_t1[Latently Infected]
-      Iv_t1[Infectious Mosquito]
-    end
+  subgraph mosquito_states_t1 [States]
+    Sv_t1[Susceptible]
+    Ev_t1[Latently Infected]
+    Iv_t1[Infectious Mosquito]
+  end
 
-    ince[Number of Mosquito Infected]
-    incv[Number of Mosquito Become Infectious]
-    delayMos((Extrinsic Incubation Period))
+  ince[Number of Mosquito Infected]
+  incv[Number of Mosquito Become Infectious]
+  delayMos((Extrinsic Incubation Period))
 
-    %% Birth rate
-    betaa[Number of Mosquito \n born]
+  %% Birth rate
+  betaa[Number of Mosquito \n born]
 
-    %% Death rate
-    mu[[Mosquito \n Death Rate]]
+  %% Death rate
+  mu[[Mosquito \n Death Rate]]
 
-    %%%%%%%
-    %% Feeding Inhibition Mosquitoes
-    %%%%%%%
-    subgraph Feeding_Inhibition
-      SvI
-      EvI
-      IvI
-    end
-    %% mv0[/Init Mosq Density/] --> Sv & Ev & Iv
+  %%%%%%%
+  %% Feeding Inhibition Mosquitoes
+  %%%%%%%
+  subgraph Feeding_Inhibition
+    SvI
+    EvI
+    IvI
+  end
+  %% mv0[/Init Mosq Density/] --> Sv & Ev & Iv
 
-    %% number of mosquitoes become infected at each time point
-    inhibition_effect[/Inhibition \n Effect/]
-    inhib_rate[[Inhibition \n Rate]]
-    feb[[Feeding \n Inhibition \n Rate]]
+  %% number of mosquitoes become infected at each time point
+  inhibition_effect[/Inhibition \n Effect/]
+  inhib_rate[[Inhibition \n Rate]]
+  feb[[Feeding \n Inhibition \n Rate]]
 
- end
+end
 
 subgraph FOI_group [Force of Infection]
   delayMos((Extrinsic \n incubation \n period))
