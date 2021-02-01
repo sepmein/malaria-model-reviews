@@ -106,7 +106,7 @@ flowchart LR
 
       %% phi
       %% phi0[/phi0/] & phi1[/phi1/] & kC[/kC/] --> phi
-      phi("P(Clinical Infection)") --> clin_inc & A
+      phi(["P(Clinical Infection)"]) --> clin_inc & A
       IC --> phi
 
       %% b: probability of infection from a infectious bite
@@ -429,6 +429,21 @@ flowchart LR
 ```
 
 ## Types of Variables
+
+```mermaid
+flowchart LR
+Proportion{{Proportion Example}}
+itn_cov{{ITN \n Coverage}}    
+Probability([Probability Example])
+phi(["Probability(Clinical Infection)"])
+number[Number Example]
+S["Number(Susceptible Population)"]
+Rate[[Rate Example]]
+Duration((Duration\n Example))
+delayMos((Extrinsic \n incubation \n period))    
+NoUnit[/NoUnit\nExample/]
+FOI[/"Force of Infection \n Mosquito-->Human"/
+```
 
 ### 1. Proportion
 

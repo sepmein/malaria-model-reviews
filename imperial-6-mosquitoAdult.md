@@ -6,13 +6,13 @@ flowchart LR
 %%%%%%%%%%%
 subgraph mosquito
 
-  subgraph mosquito_states_t0 [States]
+  subgraph mosquito_states_t0 [States at Current Timestep]
     Sv_t0[Susceptible]
     Ev_t0[Latently Infected]
     Iv_t0[Infectious Mosquito]
   end
 
-  subgraph mosquito_states_t1 [States]
+  subgraph mosquito_states_t1 [States at Next Timestep]
     Sv_t1[Susceptible]
     Ev_t1[Latently Infected]
     Iv_t1[Infectious Mosquito]
