@@ -5,8 +5,16 @@
 \usepackage[acronym, toc]{glossaries}
 \usepackage{comment}
 \usepackage{nomencl}
-\usepackage{xcolor}
-% \usepacakge{minted}
+%t\usepacakge{minted}
+\usepackage{xargs}                      % Use more than one optional parameter in a new commands
+\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
+% 
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
+\newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
 % color
 \pagecolor{black}
@@ -126,6 +134,8 @@
 \tableofcontents
 
 \section{Introduction}
+The substantial decade-long reduction in global malaria burden stalled in 2016 with an estimated increase of 5 million cases.
+
 Mathematical models is a vital way to help public health practitioners to policy decisions. Thus, it is crucial to know how they are made and the assumptions on which they are built. Mathematical models has been introduced into malaria control world for many years. History could go back to 1920s, when Ronald Ross introduced the first version of malaria model.
 
 However, differences in model structures and data been used in model calibration results in no consensus yet exists on the optimal version or output of the model. Conflicts in the different model predictions arising from the data sets used in their calibration and the behind mechanism. 
@@ -140,7 +150,7 @@ Two types of models are commonly used in the epidemiology world: the determinist
 
 Commonly used in describing disease. 
 
-TODO: add definition
+\improvement{add definition}
 
 \subsubsection{SIR Model}
 
@@ -150,13 +160,13 @@ TODO: add definition
 
 \subsection{Stochastic Model}
 
-Stochastic means has a random value.
+Stochastic means has a random value. The stochastic version of 
 
 Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}. \gls{abm} is a class of computational models to simulate actions and interactions between "agents". The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}. More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
 
 Individual based, simulated version of model, require multiple run to simulate.
 
-The vatange of agent-based models come at the price of the much higer computational resources.
+The vatange of agent-based models come at the price of the much higher computational resources.
 
 \subsection{Forward Step - From Mathematical Formula to Real World}
 
@@ -192,8 +202,7 @@ And the model used in the research often use a
 
 Does endophily change over time or based on the seasons? Often in the cold weather, some vector species tend to reside in the indoor environment. Not covered in the papers.
 
-TODO:
-Create a database from research papers to see the different settings of endophily of vector species
+\improvement{Create a database from research papers to see the different settings of endophily of vector species}
 
 \paragraph{Daily survival rate}
 
@@ -210,7 +219,7 @@ The overall birth rates of vectors
 fixed (constant)
 The distribution of the length of feeding cycle
 Related to species, interventions used
-TODO: add two figures(using normal distribution)
+\improvement{add two figures(using normal distribution)}
 Distribution before intervention
 Distribution after intervention
 
@@ -228,17 +237,17 @@ A spatial distribution for a given time, e.g.
 
 The ability could determine whether an infectious bite could be transmitted from one to another in a long distance.
 
-TODO:
+\improvement{TODO:
 Add distribution example
 Add mathematical function
-Collect information from papers and create a database
+Collect information from papers and create a database}
 \paragraph{HBI}
 HBI - human blood index
 	Related to species, intervention
   Usage of \gls{llins} and/or \gls{irs} will discourage human biting divert more bites onto non-human hosts
 
 	The birth rates may vary in the different settings. E.g. for a colony of germ in the , the reproduction process follows to a logistic growth:
-TODO: added an example figure of logistic growth
+  \improvement{TODO: added an example figure of logistic growth}
 	
 	Does the birth rate of vectors follow the same line?
 
@@ -259,6 +268,17 @@ Effects of \gls{llins} and \gls{irs}:
 \item Successfully blood-fed
 \item Lower down the survival rates for adults mosquitoes in \gls{eip} 
 \item less eggs being oviposited in breeding sites
+\end{itemize}
+
+Effects of \gls{irs} \cite{Sherrard-Smith2018b}:
+
+\gls{irs} product effectiveness varies depending on factors including: 
+
+\begin{itemize}
+  \item impact on mosquito populations (for example, an ability to kill or deter mosquitoes from entering a sprayed structure); 
+  \item impact duration (the residual half-life); 
+  \item where and when sprays are deployed (local malaria endemicity, seasonality of transmission and timing of IRS, mosquito species, human behaviour and net-use), and; 
+  \item spray quality and coverage.
 \end{itemize}
 
 \subsection{effectiveness}
@@ -335,7 +355,11 @@ $$ MC = \frac{\Delta C}{\Delta Q} $$
 
 In the short run, marginal cost ($MC$) drops when quantity($Q$) increases, then increase as $Q$ increases.
 
-The delivery part increase as coverage increase. For the linear assumption, j
+The delivery part increase as coverage increase. For the linear assumption, J
+
+\subsubsection{Costs of IRS}
+range from USDA 2–3 to roughly USDA 20 per unit\cite{Oxborough2016}
+(a unit is stander- diced across products to cover approximately 250 of wall surface)
 
 \section{Diseases}
 States:
@@ -347,6 +371,7 @@ States:
 	\item Sub-patent stage
 	\item Prophylactic protection
 \end{itemize}
+
 \section{Demography}
 \subsection{Age}
 Human population data
@@ -361,15 +386,35 @@ Paper high resolution population maps for low income nations: combining land cov
 \section{immunity}
 
 \section{Resistance}
+
+Strong association between the level of resistance and mosquito mortality observed in the experimental hut trial\cite{Sherrard-Smith2018b}.
+
+\unsure{to understand how they made the connection: did the researcher match the bioassay result to the experimental hut trial data? Find conclusions and methods in the paper and summarized it in this document.}
+
+\unsure{how does mosquito resistance affect the repel rate? Why do the mosquitoes don't like the pyrethroid  smell? And why does the mosquitoes' repel rate drops down when the resistance level goes up?}
+
+Resistance level in discriminating bioassay: the percentage of mosquitoes surviving 24-hours following exposure.
+
+The impact of reduced susceptibility of mosquito:
+\begin{itemize}
+  \item the initial efficacy is reduced
+  \item the active life-length of the insecticide is shorter as fewer mosquitoes are susceptible
+\end{itemize}
+
+\change{add the mathematical equation that describe the decrease.}
+
+One comment on the second point is that it seems there are some certain level of threshold for the resistance level and active ingredient. When combining these two factors, we might able to calculate the overall efficacy of the effective length. 
+
+\subsection{Measurement of Resistance}
+
+Bioassay:
+
 \begin{itemize}
   \item Discriminating Bioassay
   \item Intensity Bioassay
   \item Mechanism Bioassay
   \item Non-standard Bioassays
 \end{itemize}
-
-Resistance level in discriminating bioassay: the percentage of mosquitoes surviving 24-hours following exposure.
-
 
 \section{Environment}
 \section{Parameters}
@@ -379,6 +424,11 @@ Average eggs lay by female \textit{Anopheles}: 80 - 100 eggs.
 Duration of the larval period depends on temperature, in tropical areas, lasts 7 - 15 days.\cite{bayoh_lindsay_2003}
 
 Carrying capacity in aquatic stage: describe how many mosquito larvae/pupae an environment can support
+
+\section{Evaluation}
+\subsection{Comparing to Randomized Control Trails}
+\subsection{Cross Comparing}
+\subsection{Predict Future Results}
 
 % appendix
 \appendix
