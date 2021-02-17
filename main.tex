@@ -1,28 +1,36 @@
-\documentclass[a4paper, 12pt, twoside]{article}
-
+\documentclass[a4paper, 12pt, twoside]{article} 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[acronym, toc]{glossaries}
 \usepackage{comment}
 \usepackage{nomencl}
-%t\usepacakge{minted}
-\usepackage{xargs}                      % Use more than one optional parameter in a new commands
-\usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
-% 
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
-\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
-\newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+%\usepackage{minted}
+\usepackage{xargs}                      % Use more than one optional parameter in new commands
+\usepackage[pdftex, dvipsnames]{xcolor}  % Coloured text etc.
+\usepackage[colorinlistoftodos, prependcaption, textsize=tiny]{todonotes}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\graphicspath{{./images/}}
+
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red, backgroundcolor=red!25, bordercolor=red, #1]{#2}}
+\newcommandx{\change}[2][1=]{\todo[linecolor=blue, backgroundcolor=blue!25, bordercolor=blue, #1]{#2}}
 \newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
+\newtheorem{parameter}{Parameter}
+
 % color
-\pagecolor{black}
-\color{white}
+% \pagecolor{black}
+% \color{white}
 
 % glossaries
 \makeglossaries
 
+\newacronym{nmcp}{NMCP}{National Malaria Control Programme}
 \newacronym{bmgf}{BMGF}{Bill & Melinda Gates Foundation}
 \newacronym{pamca}{PAMCA}{Pan-African Mosquito Control Association}
 \newacronym{gdg}{GDG}{guideline development group}
@@ -35,82 +43,70 @@
 \newacronym{rct}{RCT}{Clustered Randomized Control Trial}
 \newacronym{pbo}{PBO}{piperonyl butuxide}
 \newacronym{eht}{EHT}{Experimental Hut Trial}
+\newacronym{itn}{ITN}{Insecticide Treated Nets}
 
 \newglossaryentry{endophilic}
-{
-  name=endophilic,
+{name=endophilic,
   description={indoor-resting}
 }
 
 \newglossaryentry{exophilic}
-{
-  name=exophilic,
+{name=exophilic,
   description={outdoor-resting}
 }
 
 \newglossaryentry{exphagic}
-{
-  name=exphagic,
+{name=exphagic,
   description={outdoor-biting}
 }
 
 \newglossaryentry{zoophagic}
-{
-  name=zoophagic,
-  description={blood feeding not only from human}
+{name=zoophagic,
+  description={blood feeding not only from human }
 }
 
 \newglossaryentry{carbamates}
-{
-  name=carbamates,
+{name=carbamates,
   description={Carbamates are a class of insecticides structurally and mechanistically similar to organophosphate (OP) insecticides. Carbamates are N-methyl Carbamates derived from a carbamic acid and cause carbamylation of acetylcholinesterase at neuronal synapses and neuromuscular junctions.}
 }
 
 \newglossaryentry{bendiocarb}
-{
-  name=bendiocarb,
-  description={Bendiocarb is an acutely toxic carbamate insecticide used in public health and agriculture and is effective against a wide range of nuisance and disease vector insects. Many bendiocarb products are or were sold under the tradenames "Ficam" and "Turcam."}
+{name=bendiocarb,
+  description={Bendiocarb is an acutely toxic carbamate insecticide used in public health and agriculture and is effective against a wide range of nuisances and disease vector insects. Many bendiocarb products are or were sold under the tradenames `Ficam' and `Turcam.'}
 }
 
 \newglossaryentry{carbosulfan}
-{
-  name=carbosulfan,
-  description={Carbosulfan is an organic compound adherent to the carbamate class. At normal conditions, it is brown viscous liquid. It is not very stable; it decomposes slowly at room temperature. Its solubility in water is low but it is miscible with xylene, hexane, chloroform, dichloromethane, methanol and acetone.}
+{name=carbosulfan,
+  description={Carbosulfan is an organic compound adherent to the carbamate class. At normal conditions, it is brown viscous liquid. It is not very stable; it decomposes slowly at room temperature. Its solubility in water is low, but it is miscible with xylene, hexane, chloroform, dichloromethane, methanol and acetone.}
 }
 
 \newglossaryentry{IRAC MoA}
-{
-  name=IRAC MoA,
+{name=IRAC MoA,
   description={The IRAC MoA classification scheme covers more than 25 different modes of action and at least 55 different chemical classes. Diversity is the spice of resistance management by chemical means and thus it provides an approach to IRM providing a straightforward means to identify potential rotation/alternation options.}
 }
 
 \newglossaryentry{IVCC}
-{
-  name=IVCC,
-  description={IVCC is the only Product Development Partnership (PDP) working in vector control. IVCC was established in 2005, through an initial \$50million grant to the Liverpool School of Tropical Medicine (LSTM) from the Bill & Melinda Gates Foundation, and is a registered charity in the UK. We work with stakeholders to facilitate the development of novel and improved public health insecticides and formulations to combat the rapidly growing problem of insecticide resistance. We bring together partners from industry, the public sector and academia to create new solutions to prevent disease transmission. By focusing resources and targeting practical scientific solutions we accelerate the process from innovation to impact.}
+{name=IVCC,
+  description={IVCC is the only Product Development Partnership (PDP) working in vector control. IVCC was established in 2005, through an initial \$50million grant to the Liverpool School of Tropical Medicine (LSTM) from the Bill & Melinda Gates Foundation, and is a registered charity in the UK\@. We work with stakeholders to facilitate the development of novel and improved public health insecticides and formulations to combat the rapidly growing problem of insecticide resistance. We bring together partners from industry, the public sector and academia to create new solutions to prevent disease transmission. By focusing resources and targeting practical scientific solutions we accelerate the process from innovation to impact.}
 }
 
 \newglossaryentry{rts}
-{
-	name=RTS\,S,
+{name=RTS\,S,
 	description={RTS\,S/AS01 is a recombinant protein-based malaria vaccine.}
 }
 
 \newglossaryentry{eir}
-{
-	name=EIR,
+{name=EIR,
 	description={Entomological Infectious Rate or infected bites per person per year}
 }
 
 \newglossaryentry{eip}
-{
-  name=extrinsic incubation period,
+{name=extrinsic incubation period,
   description={Once ingested by a mosquito, malaria parasites must undergo development within the mosquito before they are infectious to humans. The time required for development in the mosquito (the extrinsic incubation period) takes 9 days or longer, depending on the parasite species and the temperature.}
 }
 
 \newglossaryentry{intra specific competition}
-{
-  name=intra-specific competition,
+{name=intra-specific competition,
   description={Intraspecific competition is an interaction in population ecology, whereby members of the same species compete for limited resources. This leads to a reduction in fitness for both individuals, but the most fit individual survives and is able to reproduce. By contrast, interspecific competition occurs when members of different species compete for a shared resource.}
 }
 
@@ -135,20 +131,44 @@
 
 \section{Introduction}
 The substantial decade-long reduction in global malaria burden stalled in 2016 with an estimated increase of 5 million cases.
+Mathematical models is a vital way to help public health practitioners to policy decisions.
+Thus, it is crucial to know how they are made and the assumptions on which they are built.
+Mathematical models has been introduced into malaria control world for many years.
+History could go back to 1920s: when Ronald Ross introduced the first version of malaria model.
 
-Mathematical models is a vital way to help public health practitioners to policy decisions. Thus, it is crucial to know how they are made and the assumptions on which they are built. Mathematical models has been introduced into malaria control world for many years. History could go back to 1920s, when Ronald Ross introduced the first version of malaria model.
+Modelling suggests that 70\% of the reduction in malaria cases in sub-Saharan Africa (SSA) between 2000 and 2015 was attributable to the implementation of intervention strategies.
+Key interventions included \gls{itn}, artemisinin-based combination therapy (ACT) and indoor residual spraying (IRS).
+Often, field data are used as evidence for the efficacy and cost-effectiveness of selected interventions; however, these methods can be resource intensive, or have prohibitive ethical barriers.
+In such situations, mathematical simulation is increasingly used to provide further insights.
 
-However, differences in model structures and data been used in model calibration results in no consensus yet exists on the optimal version or output of the model. Conflicts in the different model predictions arising from the data sets used in their calibration and the behind mechanism. 
-
+However, differences in model structures and data been used in model calibration results in no consensus yet exists on the optimal version or output of the model.
+Conflicts in the different model predictions arising from the data sets used in their calibration and the behind mechanism. 
 That's why this document was created to facilitate the understanding the 
 
 \section{Mathematical Methods}
 
 Two types of models are commonly used in the epidemiology world: the deterministic version and stochastic version.
 
+Difference of two models:
+\begin{table}[ht]
+\centering
+\label{tab:difference}
+\begin{tabular}{c c c}
+\toprule
+ & Deterministic & Stochastic\\
+\midrule
+Immunity Level & An average level for a group & Different level for each individual \\
+Fitting to Real World & Easy & Complex \\
+\bottomrule
+\end{tabular}
+\caption{Difference of Deterministic and Stochastic Model}
+\end{table}
+
 \subsection{Deterministic Model}
 
-Commonly used in describing disease. 
+Or compartmental model.
+
+Compartmental models, which focus on interactions and transitions between population strata, have been a mainstay of such modelling for more than a century.
 
 \improvement{add definition}
 
@@ -160,38 +180,144 @@ Commonly used in describing disease.
 
 \subsection{Stochastic Model}
 
-Stochastic means has a random value. The stochastic version of 
+%Stochastic means has a random value. The stochastic version of 
+Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}.
+It is individual based version of mathematical model, require multiple run to simulate.
+\gls{abm} is a class of computational models to simulate actions and interactions between `agents'.
+The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}.
+More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
 
-Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}. \gls{abm} is a class of computational models to simulate actions and interactions between "agents". The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}. More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
+Modellers are increasingly adopting agent-based approaches, which model hosts, vectors and/or their interactions on an individual level.
+One reason for the increasing popularity of such models is their potential to provide enhanced realism by allowing system-level behaviours to emerge as a consequence of accumulated individual-level interactions, as occurs in real populations.
 
-Individual based, simulated version of model, require multiple run to simulate.
+The major advantage of \gls{abm} is the heterogeneity and stochasticity they could provide.
 
-The vatange of agent-based models come at the price of the much higher computational resources.
+The vantage of \gls{abm} come at the price of the much higher computational resources.
 
 \subsection{Forward Step - From Mathematical Formula to Real World}
 
+\paragraph{individual state transition}%
+\label{par:individual_state_transition}
+Three broad methods of individual simulation were common in the literature, each with differing degrees of agent autonomy.
+
+First, models inherited features from compartmental models typically used probabilities in place of flow rates to determine whether an individual transitioned to a new state at a given time step.
+Results from a Bernoulli trial dictated state transition.
+\[
+  f(k;p) = p^k ( 1 - p )^{1 - k}
+.\] 
+
+$p$ is the probability and  $k$ is the parameter.
+
+Secondly, some particular models focused on host parasite densities.
+Temporal disease state changes governed by a set of equations.
+
+In the third method, specific actions of individuals, for example blood meal searching, resting and oviposition, were simulated according to a process represented by a sequence state chart.
+
+\paragraph{agent construction}%
+\label{par:agent_construction}
+This part will be explained explicitly in other chapters.
+
+\paragraph{time step}%
+\label{par:time_step}
+There were also considerations relating the method of agent simulation and size of the time step.
+Daily time steps were most common.
+A temporal resolution of 1-5 days was suffice to remark the changing disease characteristics.
+If agent actions were explicitly modelled, much granular time steps are need.
+Hourly status updates were most common, some models even tracked vectors as frequency as each second.
+
 \subsection{Fitting to Real World Data}
 
-maximum likelihood estimation
+Maximum likelihood estimation
 
 Full posterior inference
 
+\subsubsection{Bayesian Models}
+
+\subsubsection{MCMC}
+
 \gls{mcmc} is mostly commonly used method to fit real world data.
 
-\gls{mcmc}
+`Burn in' is a widely used method in \gls{mcmc}. The first $n$ iteration in the fitting will be discarded to improve the accuracy.
 
 \subsection{Estimating Uncertainty}
+
+\subsection{Softwares}
+
+\begin{itemize}
+  \item ShinyStan
+\end{itemize}
 
 \section{Model Assumptions}
 Models are only as good as they made reasonable assumptions. In malaria mathematical modelling world, several assumptions have been made. The most important ones ranked as follows,
 
 1. Homogeneous mixing of population: in the deterministic types of model, individuals in the same state groups are considered as the same, e.g. Susceptible group has an average probability of transit to infectious group. But the assumption is rarely justified.
 
+Seasonality: perennial or highly seasonal 
 
+Prevalence level: high/moderate/low. 
+However, up to this date, there is no universal standard to define these levels.
+It's lack of guidance for the \gls{nmcp} to categorized their situation.
 
+\begin{table}
+  \centering
+  \begin{tabular}{c S S S}
+    \toprule
+    studies & {low} & {moderate} & {high} \\
+    \midrule
+    S & 10 & 30 & 60 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Categorization used in modeling studies}
+\end{table}
+
+\section{Host}%
+\label{sec:Host}
+
+Key simulated human factors in the models included disease states, demography, host immunity.
+
+\subsection{Disease state}
+
+Human Host could be in one of the following state:
+\begin{itemize}
+	\item Susceptible
+	\item Treating
+	\item Disease(with symptom)
+	\item Patently Asymptomatic
+	\item Sub-patent stage
+	\item Prophylactic protection
+\end{itemize}
+
+An individual malaria infection can last for many months, during which densities of both asexual parasites and gametocytes vary irregularly as consequences mainly of the developmental cycle of the parasite, of host immunity, and of antigenic variation.
+
+\subsection{Demography}
+
+  \subsubsection{Age}
+Human population data
+Often lack in some areas
+Could be estimated through satellite observations
+Paper high resolution population maps for low income nations: combining land cover and census in East Africa
+
+  \subsubsection{Birth and Death}
+
+  \subsubsection{In and Out}
+
+\subsection{Immunity}
+
+The immunity was separated into several categories:
+
+\begin{itemize}
+  \item Maternal immunity, acquired from mother, was decided by the level of mother's immunity level.
+  \item Acquired immunity.`\ ' including clinical immunity and \improvement{add another type} 
+\end{itemize}
+
+Immunity level decay. Different versions of models describe the rate of immunity decay differently.
+
+\improvement{TODO: Describe the decay rate mathematically}
 \section{Entomology}
 
 The gonotrophic cycle of a female mosquito begins with a blood meal taken from a host. The mosquito will rest and wait for digestion. It may take several blood meals before searching for a breeding site for oviposition. After egg maturation, the mosquito tries to find a suitable site and then lay 80 - 100 eggs.
+
+Then mosquitoes will search for another blood meal and repeat the gonotrophic cycle. Larvae emerge from eggs. After four morphologically larval instars, larvae transform into pupae which develop into adult mosquitoes. The duration of the larval period depends mainly on temperature, lasts 7-15 days in tropical areas.
 
 \subsection{Adult Mosquitoes}
 
@@ -211,7 +337,7 @@ Does endophily change over time or based on the seasons? Often in the cold weath
 \paragraph{Extrinsic Incubation Period}
 Average incubation period in days
 Extrinsic incubation period
-Features describing a group of vectors(may influenced by interventions)
+Features describing a group of vectors (may influenced by interventions)
 The composition of the species of given an area
 The distribution of vectors
 The overall birth rates of vectors
@@ -246,14 +372,45 @@ HBI - human blood index
 	Related to species, intervention
   Usage of \gls{llins} and/or \gls{irs} will discourage human biting divert more bites onto non-human hosts
 
-	The birth rates may vary in the different settings. E.g. for a colony of germ in the , the reproduction process follows to a logistic growth:
+	The birth rates may vary in the different settings. E.g. `\ ' for a colony of germ in the, the reproduction process follows to a logistic growth:
   \improvement{TODO: added an example figure of logistic growth}
 	
 	Does the birth rate of vectors follow the same line?
 
 \subsection{Larval}
 
-Larvea feeds on yeasts, bacteria and organic matters. After four moults, larvea become pupae, and then develop into adult mosquitoes.
+Larvae feeds on yeasts, bacteria and organic matters. After four moults, larvae become pupae, and then develop into adult mosquitoes.
+\paragraph{Carrying capacity}%
+\label{par:carrying_capacity}
+\begin{parameter}
+ Carrying capacity, describe how many mosquito larvae or pupae an environment can support.
+\end{parameter}
+
+\paragraph{competition}%
+\label{par:competition}
+Two different forms of density-dependent competition in the larval stages:
+
+\begin{itemize}
+  \item contest competition: number of larvae reaches a limit as initial edge density increases. Due to (i) increased mortality at higher density (ii) increased developmental time (iii) reduced larval size.
+  \item scramble competition: number of larvae decreases at higher initial egg density. Due to (i) cannibalism of early instar larvae by late instar and (ii)increased population of predators.
+\end{itemize}
+
+Environmental larval source management -- reduce carrying capacity
+
+IRS or LLINs - reduction in oviposition -- reduce density-dependent competition between larvae -- decreased larval mortality
+
+\paragraph{Larval Population Dynamics}%
+\label{par:larval_population_dynamics}
+
+\begin{parameter}
+\label{para:eggs_laid_per_day}
+
+Eggs Rate: $\beta$, number of eggs laid per day by each female mosquito.
+\[
+\beta=\frac{eggs\:laid\:in\:life\:time}{expected\:life\:time}
+.\]
+
+\end{parameter}
 
 \section{Interventions}
 
@@ -281,12 +438,16 @@ Effects of \gls{irs} \cite{Sherrard-Smith2018b}:
   \item spray quality and coverage.
 \end{itemize}
 
+Interventions targeting adult mosquitoes have the benefit of reducing the probability that an infected mosquito survives sporogony to become infectious, but reduced oviposition will lower the inner competition of larvae, hence reduce the mortality of larvae.
+
+While, interventions targeting larvae will result in a drop in mosquito density, but the proportion of infected mosquitoes will remain the same, or even increase(due to the reduced competition in adult mosquitoes for blood meals)
 \subsection{effectiveness}
 
 Prevalence results from Uganda \gls{rct}\cite{Staedke2020}:
 \begin{center}
-\begin{tabular}{ c c c c }
+\begin{tabular}{c c c c}
   Type & 6 months & 12 months & 18 months\\ 
+  \hline 
   \gls{llins} & 15 & 13 & 14 \\  
   \gls{pbo} & 11 & 11 & 12\\
 \end{tabular}
@@ -296,36 +457,45 @@ Prevalence results from Uganda \gls{rct}\cite{Staedke2020}:
 From Tanzania\cite{Protopopoff2018} \gls{rct}, the permethrin and \gls{pbo} concentration dropped at a steady rate for both standard \gls{llins} and Pyrethroid-PBO \gls{llins}:
 
 \begin{center}
-\begin{tabular}{ c c c c }
+\begin{tabular}{cccc}
+  \toprule
   chemical & 0 months & 12 months & 21 months\\ 
-  Permethrin(Regular) & 21.4 & 21.5 & 16.7\\  
-  Permethrin(PBO) & 20.9 & 14.7 & 12.2\\
-  PBO & 9.5 & 2.9 & 1.6
+  \midrule
+  Permethrin (Regular) & 21.4 & 21.5 & 16.7\\  
+  Permethrin (PBO) & 20.9 & 14.7 & 12.2\\
+  PBO & 9.5 & 2.9 & 1.6\\
+  \bottomrule
 \end{tabular}
 \end{center}
 
 From Uganda\cite{Staedke2020}, the \gls{pbo} dropped:
 \begin{center}
-\begin{tabular}{ c c c }
+\begin{tabular}{c c c}
+  \toprule
   chemical & 0 months & 12 months\\ 
-  \gls{pbo}PermaNet 3.0 & 26.18 & 15.28\\  
-  \gls{pbo}Olyset Plus & 8.17 & 5.04\\  
+  \midrule
+  PermaNet 3.0 & 26.18 & 15.28\\  
+  Olyset Plus & 8.17 & 5.04\\  
+  \bottomrule
 \end{tabular}
 \end{center}
 
 Usage attrition from Tanzania\cite{Protopopoff2018}:
 
 \begin{center}
-\begin{tabular}{ c c c }
+\begin{tabular}{c c c}
+  \toprule
   index & 4 months & 21 months\\ 
-  ownership & 97.6 & - \\  
+  \midrule
+  ownership & 97.6 &  \\  
   access & 89.6 & 70.2\\
-  usage & 76.9 & 50.6
+  usage & 76.9 & 50.6\\
+  \bottomrule
 \end{tabular}
 \end{center}
 
 \begin{center}
-\begin{tabular}{ c c c c }
+\begin{tabular}{c c c c}
   \gls{irs} & 0 months & 9 months & 12 months\\ 
   Actellic 300CS & 0.99 & 0.82 & 0.59  \\  
 \end{tabular}
@@ -334,7 +504,7 @@ Usage attrition from Tanzania\cite{Protopopoff2018}:
 Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the decease in usage:
 
 \begin{center}
-\begin{tabular}{ c c c c }
+\begin{tabular}{c c c c}
   index & 6 months & 12 months & 18 months\\ 
   ownership & 97 & 95 & 91 \\  
   adequate coverage & 71 & 63 & 51\\
@@ -342,8 +512,30 @@ Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the 
 \end{tabular}
 \end{center}
 
+\subsection{PBO}
+
+\[
+  PBO = 3.41 + 5.88 \frac{((1-\beta) - 0.5)}{1 + 0.78 ((1-\beta) - 0.5)}
+.\] 
+\[
+  \gamma_a = \frac{e^{PBO}}{1 + e^{PBO}}
+.\] 
+\[
+  \gamma_a = 1 - \beta
+.\] 
+\[
+\gamma_h' = 0.63 + 3.997 ( \gamma_a - 0.5 )
+.\] 
+\[
+  \gamma_h = \frac{e_{\gamma_h'}}{1+e^{\gamma_h'}}
+.\] 
+
+\subsection{IRS}
+
+Four insecticide gradients, pyrethroids (including deltamethrin, lambda-cyhalothrin and alpha-cypermethrin) are the main insecticides used by \gls{nmcp} for \gls{irs}.
+
 \subsection{Costs}
-Cost of Interventions increases when coverage increase. \cite{Winskill2017a} considered two approaches to simulate the function:
+Cost of Interventions increases when coverage increase.\cite{Winskill2017a} considered two approaches to simulate the function:
 \begin{itemize}
 	\item linear increases in cost associated with increasing coverage
 	\item delivery cost increases logarithmically with increasing coverage
@@ -361,31 +553,10 @@ The delivery part increase as coverage increase. For the linear assumption, J
 range from USDA 2–3 to roughly USDA 20 per unit\cite{Oxborough2016}
 (a unit is stander- diced across products to cover approximately 250 of wall surface)
 
-\section{Diseases}
-States:
-\begin{itemize}
-	\item Susceptible
-	\item Treating
-	\item Disease(with symptom)
-	\item Patently Asymptomatic
-	\item Sub-patent stage
-	\item Prophylactic protection
-\end{itemize}
-
-\section{Demography}
-\subsection{Age}
-Human population data
-Often lack in some areas
-Could be estimated through satellite observations
-Paper high resolution population maps for low income nations: combining land cover and census in East Africa
-
-\subsection{Birth and Death}
-
-\subsection{In and Out}
-
-\section{immunity}
-
 \section{Resistance}
+
+Discriminating dose bioassays (WHO tube assay, WHO cone assay, CDC bottle assay) are a practical option for control programmes to assess the proportion of the mosquito population that are killed by a standard dose.
+Although the simple bioassay has its limitations, it provides a useful measure to link the severity of mosquito insecticide resistance estimated in the field to the results of experimental hut trials evaluating new products.
 
 Strong association between the level of resistance and mosquito mortality observed in the experimental hut trial\cite{Sherrard-Smith2018b}.
 
@@ -425,10 +596,118 @@ Duration of the larval period depends on temperature, in tropical areas, lasts 7
 
 Carrying capacity in aquatic stage: describe how many mosquito larvae/pupae an environment can support
 
+\subsection{Experimental Hut Trail}
+
+Experimental hut studies typically report 24-h productinduced: mortality, blood-feeding inhibition, exophily and deterrence.
+
+Outcome:
+
+\begin{parameter}
+  \label{eht:mortality} 
+
+  Mortality: The number of female mosquitoes found in the hut which are dead on collection or die within the next 24-h
+  \[
+  Mortality = \frac{D}{N}
+  .\] 
+\end{parameter}
+
+
+\begin{parameter}
+  \label{eht:exophily} 
+
+  Exophily: the number of female mosquitoes in exit traps (E) compared to the sum of the number collected in the hut and exit traps (N)
+  \[
+  Exophily = \frac{E}{N}
+  .\] 
+
+\end{parameter}
+
+\begin{parameter}
+  \label{eht:blood_fed} 
+
+  Blood feeding: The number of mosquitoes that are blood fed which were collected in the hut and exit traps
+  \[
+  BloodFed = \frac{B}{N}
+  .\] 
+\end{parameter}
+
+\begin{parameter}
+  \label{eht:Deterrence} 
+
+  Deterrence: Reduction in the entry rate of mosquitoes into experimental huts with or without.
+  \[
+    Deterrency = \frac{N_C - N_T}{N_C}
+  .\] 
+\end{parameter}
+
+Explanatory factors:
+
+\begin{parameter}
+  \label{eht:experimental_hut_types}
+  Experimental hut types: West or East African design
+  
+\end{parameter}
+
+\begin{parameter}
+\label{eht:wall_substrate}
+  Wall substrate: Cement or mud
+  
+\end{parameter}
+
+\begin{parameter}
+\label{eht:chemical_class_used}
+  Chemical types used in \gls{eht}.
+
+  For IRS: carbamate, clothianidin, organophosphate and pyrethroid
+
+  For LLINs: 
+  \improvement{TODO: list the chemical class used in the LLINs}
+  
+\end{parameter}
+
+Prediction of \gls{eht} outcomes using explanatory factors, combining linear algebra and non-linear transformation\cite{Sherrard-Smith2018b}:
+
+\[
+  \pi_i = logit^{-1} \frac{\ln \pi_i}{1-\pi_i} = \frac{ \exp( \beta + \sum_h \beta_h X^{hi} ) }{ 1 - \exp( \beta + \sum_h \beta_h X^{hi} ) }
+.\] 
+
+$\beta_h X^{hi}$ denotes explanatory factors times covarite, which is the linear transformation of the explanatory hypothetical space. The middle part of the formulation then project $\mathbb{R} \twoheadrightarrow (0,1)$.
+
 \section{Evaluation}
 \subsection{Comparing to Randomized Control Trails}
+
+\gls{rct} is the gold standard for assessing intervention efficacy and effectiveness in the field.
+Results from \gls{rct} were compared to the model predictions by modellers to determine whether parametrisations satisfactorily match the observed red data\cite{Sherrard-Smith2018b}.
+Mean, as well as maximum and minimum impact can be generated by models for assessing.
+The parameter sets could be fitted to different \gls{eht} and then compare the results from \gls{eht}.
+
 \subsection{Cross Comparing}
 \subsection{Predict Future Results}
+
+\section{Method}%
+\label{sec:method}
+\subsection{Search strategy and selection criteria}
+A literature review was performed.
+Database searches of Google Scholar were performed.
+Terms relating to malaria, mathematical model, epidemiology, demography, agent-based, individual-based, microsimulation models were included. No limits were placed on publication type, language, location, dates or publication status. 
+
+\section{results}%
+\label{sec:results}
+The search yielded 212 abstracts potentially meeting the inclusion criteria. 
+
+\begin{table}
+  \centering
+  \label{tab:overview_of_the_review}
+  \begin{tabular}{c S}
+  \toprule
+  type & {number} \\
+  \midrule
+  inclusion & 212 \\
+  full-text review & 50 \\
+  \bottomrule
+  \end{tabular}
+  \caption{Overview of the review}
+\end{table}
 
 % appendix
 \appendix
