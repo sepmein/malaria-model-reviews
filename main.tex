@@ -31,6 +31,8 @@
 \makeglossaries
 
 \newacronym{pfpr}{\textit{PfPR}}{\textit{Plasmodium falciparum parasite rate}}
+\newacronym{icers}{ICERs}{Incremental cost-effectiveness ratios}
+\newacronym{ssa}{SSA}{sub-Saharan Africa}
 \newacronym{hbi}{HBI}{Human Blood Index}
 \newacronym{nmcp}{NMCP}{National Malaria Control Programme}
 \newacronym{bmgf}{BMGF}{Bill & Melinda Gates Foundation}
@@ -48,21 +50,26 @@
 \newacronym{itn}{ITN}{Insecticide Treated Nets}
 \newacronym{swisstph}{SwissTPH}{Swiss Tropical and Public Health Institute}
 
+\newglossaryentry{foi}
+{name={force of infection},
+  description={force of infection from human to mosquito and from mosquito to human}
+}
+\newglossaryentry{dalys}
+{name=DALYs,
+  description={Disability Adjusted Life Years. The sum of years of potential life lost due to premature mortality and the years of productive life lost due to disability.}
+}
 \newglossaryentry{endophilic}
 {name=endophilic,
   description={indoor-resting}
 }
-
 \newglossaryentry{exophilic}
 {name=exophilic,
   description={outdoor-resting}
 }
-
 \newglossaryentry{exphagic}
 {name=exphagic,
   description={outdoor-biting}
 }
-
 \newglossaryentry{zoophagic}
 {name=zoophagic,
   description={blood feeding not only from human }
@@ -250,12 +257,14 @@ Full posterior inference
 \subsection{Estimating Uncertainty}
 
 \subsection{Length of Model Simulation}
+3-4 years of length is a common length for simulating the effectiveness of \gls{llins}. However, longer length like 20 years was used in some studies in order to understand longer term effectiveness\cite{Walker2016}.
 
 \subsection{Intervention Optimization}
 A number of papers conducted optimization analysis of interventions.
 Methods included changing the location, timing or combination of intervention.
 Non-linear optimization methods\cite{Walker2016} was used to examined how optimum packages vary when control measures are deployed and assessed at national, subnational spatial scales.
 
+Study showed that more granular national malaria control programme will result a better cost-effectiveness\cite{Walker2016}.
 \subsection{Softwares}
 
 \begin{itemize}
@@ -295,8 +304,17 @@ It's lack of guidance for the \gls{nmcp} to categorized their situation.
 Key simulated human factors in the models included disease states, demography, host immunity.
 
 \subsection{Disease state}
+Infection with Plasmodium falciparum can lead to a number of different health outcomes, with a general trend towards decreasing pathology following the gradual acquisition of immunity by exposure and age.
+However, immunity is partial and hence episodes can occur across all age groups with asymptomatic carriage of parasite common in older children and adults.
+Young children are at risk of severe disease, the life-threatening form of malaria, which typically presents as either severe anaemia or cerebral malaria.
+There is no single clear definition of severe disease but in general this form of disease requires hospitalisation.
+Severe disease may onset very rapidly or can develop as a consequence of untreated clinical disease.
+Clinical disease (also referred to as mild or uncomplicated) is characterised by bouts of recurrent fever due to the cyclical burst of parasites during blood-stage infection.
+This is most often defined in research studies and trials on the basis of measured fever plus parasite density in the blood over some threshold, although again there is no single standard definition.
+The definition of clinical malaria is similar between models but the number of uncomplicated clinical cases that can occur per infection differs.
 
 An individual malaria infection can last for many months, during which densities of both asexual parasites and gametocytes vary irregularly as consequences mainly of the developmental cycle of the parasite, of host immunity, and of antigenic variation.
+Duration of infection in the model followed convolution of exponential distribution or log normal distribution or fixed.
 
 Human Host could be in one of the following state:
 \begin{itemize}
@@ -316,7 +334,14 @@ Human Host could be in one of the following state:
 
 Models from \gls{swisstph} had at their core individual humans with varying parasite densities. The varying level then will affect the possibilities of the state transition. Infected human will be more likely transit to the next level when they have higher densities.
 
+Models from GSK predicted the clinical malaria based on parasite densities using MAP categories fro low, moderate and high transmission.\cite{Hay2004}
+
 \subsection{Demography}
+Demographics of simulated human populations in the models were harmonised with birth cohort and population sizes.
+For Imperial the age structure of the population was derived from the life table for Tanzania 2010.
+For OpenMalaria a similar distribution was used, although with a higher mortality in the first year of life.
+For GSK and EMOD DTK a simple geometric distribution was used that provided a close match to other groups.
+In all models the total number of simulated individuals was fixed with a non-growing static population for baseline projections.
 
 \subsubsection{Age}
 \improvement{TODO: Of xx papers, xx stratified individuals by age}
@@ -325,6 +350,7 @@ Other age-varying factors were adaptive and maternal immunity and duration of in
 \gls{pfpr} was usually calculated at age groups.
 If intervention were targeting specific age group, for example \gls{rts}, stratification in model output was used to assess the impact at different age groups.
 
+Relationship between age and incidence was compared between models.
 
 Human population data
 Often lack in some areas
@@ -365,9 +391,13 @@ Maternal immunity, acquired from mother. Children will get the maternal antigen 
 Acquired immunity.`\ ' including clinical immunity and \improvement{add another type}.
 Acquired immunity alters the likelihood that infection results in clinical disease, modifies onward infectivity to mosquitoes, affects the detectability of infection, and modifies the duration of parasitaemia.
 
+\paragraph{decay}%
+\label{par:decay}
+
 Specific antibodies against \textit{Plasmodium} decay over time.
 \improvement{TODO: among xx studied paper, xx dictated the rate of decay of immunity level}
 Different versions of models describe the rate of immunity decay differently.
+Exponential decay of naturally acquired immunity was implemented in Imperial models.
 
 \improvement{TODO: Describe the decay rate mathematically}
 
@@ -513,7 +543,7 @@ The impact of reduced susceptibility of mosquito:
 
 One comment on the second point is that it seems there are some certain level of threshold for the resistance level and active ingredient. When combining these two factors, we might able to calculate the overall efficacy of the effective length.
 
-\subsection{Measurement of Resistance}
+\subsubsection{Measurement of Resistance}
 
 Bioassay:
 
@@ -524,8 +554,51 @@ Bioassay:
 	\item Non-standard Bioassay
 \end{itemize}
 
-\section{Interventions}
+\section{Force of Infection and EIR}%
+\label{sec:force_of_infection_and_eir}
 
+\subsection{\gls{foi}}%
+\label{sub:foi}
+
+\subsection{\gls{eir}}%
+\label{sub:eir}
+\gls{eir} is the driving parameter of malaria mathematical models.
+Three of the models are driven by \gls{eir} (EMOD DTK, Imperial and OpenMalaria).
+Only few models use prevalence rather than \gls{eir}as the input.
+By varying the corresponding EIR ranged from 0 to 512 infectious bites per person per year, relationship between \gls{eir} and intervention outcomes was studied.
+
+\section{Model Output}%
+\label{sec:model_output}
+
+
+\paragraph{Index}%
+\label{par:index}
+Model output include:
+\begin{itemize}
+	\item Clinical cases
+	\item All servere cases and hospitalized
+	\item Death due to malaria
+	\item \gls{dalys}
+	\item Cost-effectiveness
+\end{itemize}
+$PfPR_{2-5}$, $PfPR_{2-10}$\cite{Penny2016a}, number of cases averted, \gls{dalys} are the most common indexes.
+The prevalence of infection is defined by microscopy and PCR by specified age group.
+Comparison between baseline settings and outcome was conducted to understand the effects on interventions.
+
+\subsection{\gls{dalys} calcualtion}%
+\label{sub:dalys_calcualtion}
+\gls{dalys} were calculated based on the duration of disability and respective disability weights.
+Weights by disease outcome and treatment have been obtained from the Global Burden of Disease Life-time disability is assumed for severe episodes that result in neurological sequelae.
+Years of life lost (YLLs) and DALYs were calculated assuming age-specific life expectancies, based on the life-table from countries.
+YLLs and DALYs were estimated based on a comprehensive measure of deaths that includes both direct malaria deaths and deaths due to malaria co-morbidities.
+While some model only focus on mobility based on direct malaria deaths.
+
+\subsection{Cost Effectiveness}%
+\label{sub:cost_effectiveness}
+\gls{icers} was the main index for comparing cost effectiveness.
+For example, \gls{icers} was compared between four models in one study to analysis the cost-effectiveness of \gls{rts} \cite{Hay2004}.
+
+\section{Interventions}
 Interventions could broadly be divided into those targeted at the human host (e.g. pharmacological) or the vector.
 
 Two core interventions defined by WHO: \gls{llins}, \gls{irs}
@@ -548,7 +621,7 @@ Effects of \gls{irs} \cite{Sherrard-Smith2018b}:
 \begin{itemize}
 	\item impact on mosquito populations (for example, an ability to kill or deter mosquitoes from entering a sprayed structure);
 	\item impact duration (the residual half-life);
-	\item where and when sprays are deployed (local malaria endemicity, seasonality of transmission and timing of IRS, mosquito species, human behaviour and net-use), and;
+	\item where and when sprays are deployed (local malaria endemicity, seasonality of transmission and timing of IRS, mosquito species, human behavior and net-use), and;
 	\item spray quality and coverage.
 \end{itemize}
 
@@ -556,6 +629,19 @@ Realistic intervention variables, including attrition of LLINs due to wear and t
 
 Interventions targeting adult mosquitoes have the benefit of reducing the probability that an infected mosquito survives sporogony to become infectious, but reduced oviposition will lower the inner competition of larvae, hence reduce the mortality of larvae.
 While, interventions targeting larvae will result in a drop in mosquito density, but the proportion of infected mosquitoes will remain the same, or even increase(due to the reduced competition in adult mosquitoes for blood meals)
+
+\subsection{\gls{llins}}%
+\label{sub:llins}
+
+\paragraph{Interval of simulation}%
+\label{par:interval_of_simulation}
+Mass campaign was a popular way to distribute \gls{llins} in \gls{ssa}.
+Interval between campaigns are crucial for sustain the effectiveness of nets.
+A variety of intervals were used in the models.
+Among which, 2, 3, 4\cite{Walker2016} were the common choices.
+
+Studies showed the declined trend of \gls{llins} effectiveness due to the attrition of the pyrethroid and integrity of the net.
+Overall effectiveness will be less influenced by attrition for a short interval.
 
 \subsection{effectiveness}
 \improvement{TODO: what kind of index studies focused? EIR? DALYs? Prevalence?}
@@ -572,6 +658,12 @@ Prevalence results from Uganda \gls{rct}\cite{Staedke2020}:
 \end{center}
 
 \subsection{attrition}
+
+\paragraph{Half life}%
+\label{par:half_life}
+
+A half-life of effectiveness 2.64 years
+
 From Tanzania\cite{Protopopoff2018} \gls{rct}, the permethrin and \gls{pbo} concentration dropped at a steady rate for both standard \gls{llins} and Pyrethroid-PBO \gls{llins}:
 
 \begin{center}
@@ -682,24 +774,56 @@ The delivery part increase as coverage increase. For the linear assumption, J
 \end{table}
 
 \subsection{\gls{llins}}
+Review from fields were used to estimate the median unit procurement cost and the delivering cost of \gls{llins}.
+Inflation rate calculator was also included in some studies\cite{Walker2016}.
 
-\subsection{Costs of IRS}
+\begin{table}[htpb]
+	\centering
+	\caption{Cost of \gls{llins}}
+	\label{tab:cost_of_llins}
+	\begin{tabular}{cSSSS}
+		\toprule
+		studies           & {year} & {procurement} & {delivering} & {total} \\
+		\midrule
+		\cite{Walker2016} & 2016   & 5.00          & 1.58         & 7.03    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\subsection{\gls{irs}}
 Range from USDA 2–3 to roughly USDA 20 per unit\cite{Oxborough2016}
 (a unit is standardized across products to cover approximately 250 of wall surface)
 
-\section{Environment}%
-\label{sec:environment}
-Core environmental aspects related to vector activity were included, such as water sources for oviposition, houses for blood meal locations, and meteorological data to account for seasonal patterns in transmission.
-Rainfall and temperature data were regularly used.
-Seasonality in larval carrying capacity informed by seasonal patterns in rainfall\cite{Walker2016}.
+\begin{table}[htpb]
+	\centering
+	\caption{Cost of \gls{irs}}
+	\label{tab:cost_of_irs}
+	\begin{tabular}{cSSSS}
+		\toprule
+		studies           & {year} & {procurement} & {delivering} & {total} \\
+		\midrule
+		\cite{Walker2016} & 2012   &               &              & 8.08    \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 Perennial and seasonal settings were two concepts describing the seasonal feature in sub-Saharan region.
 
+\subsection{\gls{rts}}%
+\label{sub:rts}
+Costs of vaccine introduction are calculated by some studies\cite{Hay2004} from the provider perspective, but are limited to cost of
+consumables including vaccines, injection and reconstitution syringes, safety box.
+Prices are scaled up to account for freight\cite{Winskill2017a} and wastage\cite{Hutton2006}.
+
 \section{Parameters}
 
+\paragraph{Sources}%
+\label{par:sources}
 Most models used past literature or simulations to determine baseline parameter values.
 Due to the nature of certain inputs, many parameters cannot or have not been estimated in field studies, and consequently authors used expert knowledge to select these values.
 
+\paragraph{Calibration}%
+\label{par:calibration}
 Studies used models that were either previously calibrated to data or presented calibration as a component of their work.
 Calibration techniques included the use of calibration vectors, least squares, maximum likelihood functions, and visual estimations.
 Bayesian techniques for model fitting could provide credible intervals alongside point estimates of parameters.
@@ -712,7 +836,6 @@ Duration of the larval period depends on temperature, in tropical areas, lasts 7
 Carrying capacity in aquatic stage: describe how many mosquito larvae/pupae an environment can support
 
 \subsection{Experimental Hut Trail}
-
 Experimental hut studies typically report 24-h productinduced: mortality, blood-feeding inhibition, exophily and deterrence.
 
 Outcome:

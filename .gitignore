@@ -4,6 +4,7 @@
 *.fls
 library.bib
 main.acn
+*.out
 main.aux
 main.bbl
 main.blg
