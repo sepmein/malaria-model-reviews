@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{booktabs}
+\usepackage{hyperref}
 \graphicspath{{./images/}}
 
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red, backgroundcolor=red!25, bordercolor=red, #1]{#2}}
@@ -30,25 +31,36 @@
 % glossaries
 \makeglossaries
 
-\newacronym{pfpr}{\textit{PfPR}}{\textit{Plasmodium falciparum parasite rate}}
-\newacronym{icers}{ICERs}{Incremental cost-effectiveness ratios}
-\newacronym{ssa}{SSA}{sub-Saharan Africa}
-\newacronym{hbi}{HBI}{Human Blood Index}
-\newacronym{nmcp}{NMCP}{National Malaria Control Programme}
-\newacronym{bmgf}{BMGF}{Bill & Melinda Gates Foundation}
-\newacronym{pamca}{PAMCA}{Pan-African Mosquito Control Association}
-\newacronym{gdg}{GDG}{guideline development group}
-\newacronym{msat}{MSAT}{mass screening and treatment approach}
-\newacronym{llins}{LLINs}{Long Lasting Insecticide Treated Nets}
 \newacronym{abm}{ABM}{Agent-Based Models}
-\newacronym{irs}{IRS}{Indoor Residual Spraying}
-\newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
-\newacronym{mcmc}{MCMC}{Markov Chain Monte Carlo}
-\newacronym{rct}{RCT}{Clustered Randomized Control Trial}
-\newacronym{pbo}{PBO}{piperonyl butuxide}
+\newacronym{act}{ACT}{artemisinin-based combination therapy}
+\newacronym{auc}{AUC}{Area under curve}
+\newacronym{bmgf}{BMGF}{Bill & Melinda Gates Foundation}
+\newacronym{cea}{CEA}{cost-effectiveness analysis}
 \newacronym{eht}{EHT}{Experimental Hut Trial}
+\newacronym{gdg}{GDG}{guideline development group}
+\newacronym{hbi}{HBI}{Human Blood Index}
+\newacronym{icers}{ICERs}{Incremental cost-effectiveness ratios}
+\newacronym{irs}{IRS}{Indoor Residual Spraying}
 \newacronym{itn}{ITN}{Insecticide Treated Nets}
+\newacronym{llins}{LLINs}{Long Lasting Insecticide Treated Nets}
+\newacronym{mcmc}{MCMC}{Markov Chain Monte Carlo}
+\newacronym{mda}{MDA}{mass drug administration}
+\newacronym{msat}{MSAT}{mass screening and treatment approach}
+\newacronym{nmcp}{NMCP}{National Malaria Control Programme}
+\newacronym{odd}{ODD}{overview, design concepts and details}
+\newacronym{pamca}{PAMCA}{Pan-African Mosquito Control Association}
+\newacronym{pbo}{PBO}{piperonyl butuxide}
+\newacronym{pfpr}{\textit{PfPR}}{\textit{Plasmodium falciparum parasite rate}}
+\newacronym{pvprlm}{\textit{Pv}${PR}_{LM}$}{parasite prevalence by light microscopy}
+\newacronym{rct}{RCT}{Clustered Randomized Control Trial}
+\newacronym{ssa}{SSA}{sub-Saharan Africa}
+\newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
 \newacronym{swisstph}{SwissTPH}{Swiss Tropical and Public Health Institute}
+
+\newglossaryentry{xgboost}
+{name={XGBoost},
+  description={Extreme Gradient boosting, popularly referred to as XGBoost, is a machine learning method that is used to solve regression and classification problems. It provides results in a prediction model, mostly in the form of trees. It is scalable and efficient in memory usage and drives fast learning through parallel and distributed computing.}
+}
 
 \newglossaryentry{foi}
 {name={force of infection},
@@ -145,16 +157,34 @@
 \tableofcontents
 
 \section{Introduction}
-The substantial decade-long reduction in global malaria burden stalled in 2016 with an estimated increase of 5 million cases.
 Mathematical models is a vital way to help public health practitioners to policy decisions.
-Thus, it is crucial to know how they are made and the assumptions on which they are built.
 Mathematical models have been introduced into malaria control world for many years.
-History could go back to 1920s: when Ronald Ross introduced the first version of malaria model.
+History could go back to 1911, Christophers\cite{christophers1911epidemic} developed an early-warning system for malaria epidemics based on rainfall, fever-related deaths and wheat prices.
+Then in 1920s, Ronald Ross introduced the famous version of malaria model.
+In 1970s, model simulations had been compared to field observations in order to estimate the parameter values giving the best fit possible and to evaluate the model by analyzing the discrepancies between the observed and expected values\cite{dietz1974}.
 
+The substantial decade-long reduction in global malaria burden stalled in 2016 with an estimated increase of 5 million cases.
 Modelling suggests that 70\% of the reduction in malaria cases in sub-Saharan Africa (SSA) between 2000 and 2015 was attributable to the implementation of intervention strategies.
 Key interventions included \gls{itn}, artemisinin-based combination therapy (ACT) and indoor residual spraying (IRS).
 Often, field data are used as evidence for the efficacy and cost-effectiveness of selected interventions; however, these methods can be resource intensive, or have prohibitive ethical barriers.
 In such situations, mathematical simulation is increasingly used to provide further insights.
+
+Spatial model\cite{Weiss2020e} was applied to understand the potential indirect effects of the COVID-19 pandemic on malaria intervention coverage, morbidity, and mortality.
+Mathematical model was also applied to understand progression of disease. The interaction between red blood cells, merozoites, and platelets during malaria infection was studied to understand the function of platelets in antiparasitic action.
+
+Thus, it is crucial to know how they are made and the assumptions on which they are built.
+
+The most valuable modelling information for policy-makers is on the effectiveness and cost-effectiveness of malaria interventions and their combinations in different settings, in reducing transmission, morbidity and mortality, and in potentially interrupting transmission.
+
+Modelling can help to answer questions as:
+
+\begin{itemize}
+  \item What combination of intervention would achieve highest impact given fixed resources?
+  \item In low-transmission settings, what combination of interventions or changes can help to interrupt transmission?
+  \item What's optimal coverage of specific intervention? Is it beneficial to add a second vector control intervention to a population with already high coverage of one intervention?
+\end{itemize}
+
+At \gls{nmcp} level, modelling could help to set up precise criteria based on WHO recommendations, to create a transition from policy-making to planning. For product research and development planners, models could help to devise target product profiles for new interventions, for example required minimum efficacy and durability of an intervention.
 
 However, differences in model structures and data been used in model calibration results in no consensus yet exists on the optimal version or output of the model.
 Conflicts in the different model predictions arising from the data sets used in their calibration and the behind mechanism.
@@ -162,9 +192,22 @@ That's why this document was created to facilitate the understanding the
 
 \section{Mathematical Methods}
 
-Two types of models are commonly used in the epidemiology world: the deterministic version and stochastic version.
+Models are commonly classified as deterministic or stochastic.
+Deterministic models assume the system follows a fixed and defined rule with no random variation or noise; stochastic models assume that randomness or noise is present.
+Stochastic models assume randomness which are not understandable or could not been implemented is important and explicitly include it in the system.
+Detailed stochastic models can provide quantitative evaluations and predictions of the effects of interventions on the levels of malaria transmission, morbidity and mortality, though they do not always give general rules.
+While deterministic paradigm assume the randomness is neglectable and consider only the average behavior of the system.
+To understand rare events, such as malaria death or in elimination settings, stochastic model is essential.
+For the high or intermediate transmission settings, and system do not need to explore the heterogeneities, deterministic could be considered.
+Both paradigms of models are useful and have their place in our understanding of malaria and in planning for malaria control.
 
-Difference of two models:
+Other forecasting approaches included statistical modelling, and machine-learning methods were also been applied in this field.
+The statistical methods included generalised linear models, Auto-Regressive Integrated Moving Average (ARIMA) models\cite{box2015time} and Holt-Winters models\cite{Chatfield1978}.
+Other authors\cite{Toh2021a,Libbrecht2015,Nkiruka2021,Verma2020,Kim2019,Khameneh2014,Ebhuoma2018,Hancock2020} predicted malaria incidence using neural networks, a machine-learning technique.
+
+\paragraph{Differences of two models}%
+\label{par:differences_of_two_models}
+
 \begin{table}[ht]
 	\centering
 	\label{tab:difference}
@@ -181,15 +224,30 @@ Difference of two models:
 
 \subsection{Deterministic Model}
 
+Traditionally, most models tended to be population-based, treating all individuals within a state group as identical.
 Or compartmental model.
 
 Compartmental models, which focus on interactions and transitions between population strata, have been a mainstay of such modelling for more than a century.
 
 \improvement{add definition}
 
+\paragraph{When the model is suitable for deterministic model?}%
+\label{par:when_the_model_is_suitable_for_deterministic_model_}
+
+First, the less importance of stochasticity in median or high-transmission settings, requires an alternative approach to stochastic compartmental methods.
+Second, do not require discrete population simulations to incorporate spatially explicit environments at fine resolutions.
+Third, do not require to represent heterogeneities in disease progression and severity on the individual patient level. 
+
 \subsubsection{SIR Model}
 
 \subsubsection{SEIR Model}
+When a pathogen appears in a host community, it partitions individuals in the community into categories depending on parasite density inside them and the type of infection.
+These categories or compartments are represented by standard notation of S-E-I-R.
+In a simple form they are as follows: the first group consists of the fraction of host population that is Susceptible (S) to infection; then comes the Exposed (E) class - the fraction of population whose individuals are infected by the pathogen, but not capable of passing on the infection to others during a latent period.
+The next is I class or Infectious individuals, who give rise to more infected individuals through interaction with the S group.
+Finally, those individuals who remove from the infection(mortality or recovered) make up the R class.
+There are variations in the compartment structure depending on the type of disease.
+For example, the I class of individuals may not recover at all and die; R can consist of individuals, who recover with temporary or permanent immunity, thereby further subdividing the epidemiological compartments.
 
 \subsubsection{Other Variation}
 
@@ -232,44 +290,63 @@ In the third method, specific actions of individuals, for example blood meal sea
 \label{par:agent_construction}
 This part will be explained explicitly in other chapters.
 
+
+\subsection{Fitting to Real World Data}
+Models will only be trusted i
+Maximum likelihood estimation
+
+Full posterior inference
+
+
+\subsubsection{Bayesian Models}
+
+\subsubsection{MCMC}
+
+Approaches techniques such as \gls{mcmc} and approximate Bayesian computation are increasing in popularity as including uncertainty in model parameters becomes more common [126].
+\gls{mcmc} can search the entire parameter space, or more precisely that part of parameter space that has non-negligible posterior probability.
+MCMC has already been used in malaria ensemble modelling [108, 116, 118] and parameter estimation by Griffin et al[14], as well as in modelling of other infectious diseases [124, 125].
+
+\paragraph{Burn in}%
+\label{par:burn_in}
+`Burn in' is a widely used method in \gls{mcmc}. The first $n$ iteration in the fitting will be discarded to improve the accuracy.
+
+\subsection{Estimating Uncertainty}
+Given that uncertainty remains even after calibration, it is important to apply a systematic and comprehensive approach to parameter estimation before using models for predicting parameter impact or forecasting.
+
+\subsection{Length of Model Simulation}
+3-4 years of length is a common length for simulating the effectiveness of \gls{llins}. However, longer length like 20 years was used in some studies in order to understand longer term effectiveness\cite{Walker2016}.
+
 \paragraph{time step}%
 \label{par:time_step}
+Dynamic models may treat time as discrete units, leading to difference equations, or they may consider continuous time, leading to differential equations.
+
 There were also considerations relating the method of agent simulation and size of the time step.
 Daily time steps were most common.
 A temporal resolution of 1-5 days was suffice to remark the changing disease characteristics.
 If agent actions were explicitly modelled, much granular time steps are need.
 Hourly status updates were most common, some models even tracked vectors as frequency as each second.
 
-\subsection{Fitting to Real World Data}
-
-Maximum likelihood estimation
-
-Full posterior inference
-
-\subsubsection{Bayesian Models}
-
-\subsubsection{MCMC}
-
-\gls{mcmc} is mostly commonly used method to fit real world data.
-
-`Burn in' is a widely used method in \gls{mcmc}. The first $n$ iteration in the fitting will be discarded to improve the accuracy.
-
-\subsection{Estimating Uncertainty}
-
-\subsection{Length of Model Simulation}
-3-4 years of length is a common length for simulating the effectiveness of \gls{llins}. However, longer length like 20 years was used in some studies in order to understand longer term effectiveness\cite{Walker2016}.
-
 \subsection{Intervention Optimization}
-A number of papers conducted optimization analysis of interventions.
+A number of papers\cite{Tchoumi2020} conducted optimization analysis of interventions.
 Methods included changing the location, timing or combination of intervention.
+Pontryagin’s Maximum Principle\cite{Tchoumi2020} with respect to a time dependent constant is used to derive the necessary conditions for the optimal usage of interventions.
 Non-linear optimization methods\cite{Walker2016} was used to examined how optimum packages vary when control measures are deployed and assessed at national, subnational spatial scales.
 
 Study showed that more granular national malaria control programme will result a better cost-effectiveness\cite{Walker2016}.
+\subsection{\texorpdfstring{\gls{R0}}{R0}}%
+\label{sub:R0}
+\gls{R0}, the basic reproductive number, is often used as a measure of the severity of disease transmission and the possibility of disease elimination.
+Each model could have their own definition of \gls{R0}.
+\gls{R0} could be defined as a quantitative answer to the question, “How many infectious humans could be expected from a single infectious human after just one generation of the parasite, assuming all other humans and mosquitoes are susceptible? ”
+
 \subsection{Softwares}
 
 \begin{itemize}
 	\item ShinyStan
+    \item OpenMalaria
+   % \item \href{https://github.com/MWhite-InstitutPasteur/Pvivax_IBM}{Pvivax_IBM}
 \end{itemize}
+
 
 \subsection{Model Assumptions}
 Models are only as good as they made reasonable assumptions. In malaria mathematical modeling world, several assumptions have been made. The most important ones ranked as follows,
@@ -298,13 +375,59 @@ It's lack of guidance for the \gls{nmcp} to categorized their situation.
 	\caption{Categorization used in modeling studies}
 \end{table}
 
+\paragraph{Immunity}%
+\label{par:immunity}
+Study\cite{White2018b} assumed that both primary infections and relapses contribute to the acquisition of immunity.
+And each new infection boosts immunity, after each immune boost there is a refractory period of duration during which immunity cannot be further boosted. 
+
+\subsection{Increasing clarity}%
+\label{sub:incresing_clarity}
+Increasing clarity in model reporting would be of great benefit to both the creators of models and their audience.
+While many papers included detailed supplementary materials for additional results, project descriptions and calibration, validation, sensitivity analysis and optimization techniques, the intricacies of these techniques often unclear.
+To make model descriptions more understandable and complete, thereby making \gls{abm} less subject to criticism for being irreproducible, a protocol called \gls{odd} \cite{Grimm2010} was published in 2006 to standardize the published descriptions of \gls{abm}.
+Some models that used it \cite{Zhu2015, Zhu2015a, Watson2017} were simple to understand and appeared easily replicable by external groups.
+Further transparency includes sharing of the mathematics and code{Watson2017} of models. These small steps in documentation would allow for increased verification and validation of models, as well as increasing opportunities for collaboration between modelling groups.
+
+\subsection{Machine learning}%
+\label{sub:machine_learning}
+\improvement{TODO: definition of machine learning}
+Machine learning offers the ability to extract knowledge from data to identify relevant patterns using classification. These patterns aid in medical diagnosis and decision-making.
+Machine learning-based model for the classification of malaria incidence using climate variability.
+Methods include K-means, \gls{xgboost}, artificial neural networks were relatively new methods have been widely used in malaria mathematical models.
+A neural network is a machine-learning method that connects a set of inputs(eg, weather entomology covariates) to outputs (eg, malaria counts).
+The connection between inputs and outputs are made via ‘neurons’ and the number of links and corresponding weights are chosen to give the best possible fit to the training data.
+Neural networks have been proved to be useful in their capacity to handle non-linear relationships as well as a large number of parameters, and also their ability to detect all possible interactions between predictor variables.
+Study\cite{Verma2020} used backpropagation neural network to predict the incidence of malaria by climate data.
+
+\subsection{Equilibrium point}%
+\label{sub:equilibrium_point}
+An equilibrium is the simplest possible solution to a dynamical system.
+It is a solution where the state variable is a constant; the variable doesn't change with time at all.
+Dynamic systems with constant parameters will enter an equilibrium state after a length of simulation.
+Studies used the equilibrium state to calculate the parameters, \improvement{TODO: added reference} and to explore the optimal interventions coverage of \gls{llins}.
+Through the application of Pontryagin’s maximum principle, study used numerical simulations to determine an optimal control strategy\cite{Tchoumi2020}.
+
 \section{Host}%
 \label{sec:Host}
-
 Key simulated human factors in the models included disease states, demography, host immunity.
 
 \subsection{Disease state}
-Infection with Plasmodium falciparum can lead to a number of different health outcomes, with a general trend towards decreasing pathology following the gradual acquisition of immunity by exposure and age.
+Human infections begin during the mosquito blood meal when sporozoites enter the skin.
+As the greatest public health burden is attributable to \textit{P. falciparum}, most mathematical models focused on the simulations of the impact of interventions on one malaria species, with only few attentions paid on \textit{P. vivax} \cite{White2018b} . 
+
+\begin{parameter}
+  {latent period from infectious bite to detectable parasites}
+  Parasites are not obvious in the blood until about 11 days later.
+\end{parameter}
+
+A human with a \textit{P. falciparum} infection is not infectious until a fraction of the blood-stage parasites become gametocytes and then mature.
+
+\begin{parameter}
+{Period of a human get an infectious bite to infectious}
+{8-10 days}
+\end{parameter}
+
+Infection with \textit{P. falciparum} can lead to a number of different health outcomes, with a general trend towards decreasing pathology following the gradual acquisition of immunity by exposure and age.
 However, immunity is partial and hence episodes can occur across all age groups with asymptomatic carriage of parasite common in older children and adults.
 Young children are at risk of severe disease, the life-threatening form of malaria, which typically presents as either severe anaemia or cerebral malaria.
 There is no single clear definition of severe disease but in general this form of disease requires hospitalisation.
@@ -313,8 +436,25 @@ Clinical disease (also referred to as mild or uncomplicated) is characterised by
 This is most often defined in research studies and trials on the basis of measured fever plus parasite density in the blood over some threshold, although again there is no single standard definition.
 The definition of clinical malaria is similar between models but the number of uncomplicated clinical cases that can occur per infection differs.
 
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.2\textwidth]{malaria-life-cycle-diagram}
+  \caption{malaria life cycle diagram}
+  \label{fig:malaria-life-cycle-diagram}
+\end{figure}
+
+\begin{parameter}{\gls{eip}}
+The parasite enters the mosquito during a blood meal and the mosquito becomes infectious 10-16 days later, after the parasite develops into sporozoites.
+The period was called \gls{eip}. 
+\end{parameter}
+
 An individual malaria infection can last for many months, during which densities of both asexual parasites and gametocytes vary irregularly as consequences mainly of the developmental cycle of the parasite, of host immunity, and of antigenic variation.
 Duration of infection in the model followed convolution of exponential distribution or log normal distribution or fixed.
+
+\begin{parameter}
+{The length of disease.}
+{Untreated or improperly treated infection last about 200 days on average, some could last for more than a year.}
+\end{parameter}
 
 Human Host could be in one of the following state:
 \begin{itemize}
@@ -335,6 +475,8 @@ Human Host could be in one of the following state:
 Models from \gls{swisstph} had at their core individual humans with varying parasite densities. The varying level then will affect the possibilities of the state transition. Infected human will be more likely transit to the next level when they have higher densities.
 
 Models from GSK predicted the clinical malaria based on parasite densities using MAP categories fro low, moderate and high transmission.\cite{Hay2004}
+
+Other study separate infected individuals into three different groups(infected high-density parasites with fever, \gls{pvprlm}, infected PCR detectable parasites)\cite{White2018b}, by symptoms and detectability.
 
 \subsection{Demography}
 Demographics of simulated human populations in the models were harmonised with birth cohort and population sizes.
@@ -371,35 +513,71 @@ In malaria elimination scenario, imported cases is an most important threat.
 Modeling population flow in that case would be helpful for countries in elimination stage to quantify the threats.
 In that case, predictive models of human movement are needed to help inform how best to target strategies.
 
+Only a few models\cite{Zhu2015a} considered the human mobility.
 One study focused to fit trip data to the gravity model and radiation model\cite{Marshall2018}.
 The relationships between travel distance and frequency was studied.
 Other model\cite{acevedo_spatial_2015} used extend Ross-Ronald model to the interplay between spatial transmission heterogeneity and human mobility, and their combined influence on prevalence and \gls{R0}.
 These models may help predict the spatial transmission of malaria parasites and inform strategies to control their spread.
 
 On the contrast to host mobility, vector mobility is rarely included in the mathematical models.
+Vector mobility may be an important factor especially for the impact analysis of invasive vectors such as \textit{An. stephensi}.
 
 \subsection{Immunity}
+
+Immunity was depicted as being dependent on levels of anti-parasite immunity (AP) and clinical immunity (AC).
+In particular, anti-parasite immunity is assumed to have two effects:
+\begin{itemize}
+  \item reducing the probability that a blood-stage infection will achieve sufficiently high density to be detectable by light microscopy);
+  \item increasing the rate at which low density infections are cleared (rPCR).
+\end{itemize} 
+Clinical immunity is assumed to reduce the probability that a high-density blood-stage infection will progress to cause a symptomatic episode of clinical malaria.
 
 The immunity was separated into several categories:
 
 \paragraph{Maternal Immunity}%
 \label{par:maternal_immunity}
-Maternal immunity, acquired from mother. Children will get the maternal antigen from mother. Their immunity level were inherited from their mother's level. The maternal immunity will protect new born infant from infections, and will decay after 6 months.
+Children will get the maternal antigen from mother.
+Model assumed a new-born infant will acquire a fraction of their mother’s anti-parasite and clinical immunity.
+The maternal immunity will protect new born infant from infections, and will decay exponential after a period of time.
+\[
+  I_{maternal} = e^{- \frac{a}{d_{maternal}}}
+.\] 
 
-\paragraph{acquired immunity}%
+Here,
+
+\begin{parameter}
+  {$I_{maternal}$}
+{denotes maternal immunity.}
+\end{parameter}
+\begin{parameter}
+  {$d_{maternal}$}
+{denotes the exponential decay rate of maternal immunity.}
+\end{parameter}
+\begin{parameter}
+{$a$}
+{denotes the age.}
+\end{parameter}
+
+\paragraph{Acquired immunity}%
 \label{par:acquired_immunity}
 Acquired immunity.`\ ' including clinical immunity and \improvement{add another type}.
 Acquired immunity alters the likelihood that infection results in clinical disease, modifies onward infectivity to mosquitoes, affects the detectability of infection, and modifies the duration of parasitaemia.
 
+\paragraph{Acquisition}%
+\label{par:acquisition}
+The \gls{abm} explicitly depicted the acquisition of both anti-parasite and clinical immunity to be age and exposure dependent.
+
 \paragraph{decay}%
 \label{par:decay}
-
 Specific antibodies against \textit{Plasmodium} decay over time.
+
 \improvement{TODO: among xx studied paper, xx dictated the rate of decay of immunity level}
 Different versions of models describe the rate of immunity decay differently.
 Exponential decay of naturally acquired immunity was implemented in Imperial models.
 
 \improvement{TODO: Describe the decay rate mathematically}
+
+Immunity level then will be incorporated into models and will affect the probability that an infection becomes detectable, the duration of a blood-stage infection.
 
 \section{Vector}%
 \label{sec:vector}
@@ -418,6 +596,13 @@ Then mosquitoes will search for another blood meal and repeat the gonotrophic cy
 Larvae emerge from eggs.
 After four morphologically larval instars, larvae transform into pupae which develop into adult mosquitoes.
 The duration of the larval period depends mainly on temperature, lasts 7-15 days in tropical areas.
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.2\textwidth]{gonotrophic-cycle-diagram}
+  \caption{Gonotrophic cycle diagram}
+  \label{fig:gonotrophic-cycle-diagram}
+\end{figure}
 
 \subsection{Adult Mosquitoes}
 
@@ -543,6 +728,10 @@ The impact of reduced susceptibility of mosquito:
 
 One comment on the second point is that it seems there are some certain level of threshold for the resistance level and active ingredient. When combining these two factors, we might able to calculate the overall efficacy of the effective length.
 
+An epidemiology-genetics model was published\cite{Mohammed-Awel2019} for assessing the impact of insecticides resistance in the mosquito population.
+The model couples disease epidemiology with vector population genetics and studied the equilibrium state of an deterministic dynamic malaria model and presented the resistance allele dominance associated with the insecticide resistance in the mosquito population.
+Study showed that in moderate and high malaria transmission settings the \gls{itn}-\gls{irs} strategy can lead to the effective control of the disease, but in longer simulation it fails to manage insecticide resistance (as measured in terms of the frequency of resistant allele).
+
 \subsubsection{Measurement of Resistance}
 
 Bioassay:
@@ -557,10 +746,10 @@ Bioassay:
 \section{Force of Infection and EIR}%
 \label{sec:force_of_infection_and_eir}
 
-\subsection{\gls{foi}}%
+\subsection{\texorpdfstring{\gls{foi}}{Force of Infection}}%
 \label{sub:foi}
 
-\subsection{\gls{eir}}%
+\subsection{\texorpdfstring{\gls{eir}}{EIR}}%
 \label{sub:eir}
 \gls{eir} is the driving parameter of malaria mathematical models.
 Three of the models are driven by \gls{eir} (EMOD DTK, Imperial and OpenMalaria).
@@ -570,22 +759,21 @@ By varying the corresponding EIR ranged from 0 to 512 infectious bites per perso
 \section{Model Output}%
 \label{sec:model_output}
 
-
 \paragraph{Index}%
 \label{par:index}
 Model output include:
 \begin{itemize}
 	\item Clinical cases
-	\item All servere cases and hospitalized
+	\item All severe cases and hospitalized
 	\item Death due to malaria
 	\item \gls{dalys}
 	\item Cost-effectiveness
 \end{itemize}
-$PfPR_{2-5}$, $PfPR_{2-10}$\cite{Penny2016a}, number of cases averted, \gls{dalys} are the most common indexes.
-The prevalence of infection is defined by microscopy and PCR by specified age group.
+$PfPR_{2-5}$, $PfPR_{2-10}$\cite{Penny2016}, number of cases averted, \gls{dalys} are the most common indexes.
+The prevalence of infection is defined by microscopy(\gls{pvprlm}) and PCR by specified age group.
 Comparison between baseline settings and outcome was conducted to understand the effects on interventions.
 
-\subsection{\gls{dalys} calcualtion}%
+\subsection{\texorpdfstring{\gls{dalys} calculation}{DALYs Calculation}}%
 \label{sub:dalys_calcualtion}
 \gls{dalys} were calculated based on the duration of disability and respective disability weights.
 Weights by disease outcome and treatment have been obtained from the Global Burden of Disease Life-time disability is assumed for severe episodes that result in neurological sequelae.
@@ -630,7 +818,7 @@ Realistic intervention variables, including attrition of LLINs due to wear and t
 Interventions targeting adult mosquitoes have the benefit of reducing the probability that an infected mosquito survives sporogony to become infectious, but reduced oviposition will lower the inner competition of larvae, hence reduce the mortality of larvae.
 While, interventions targeting larvae will result in a drop in mosquito density, but the proportion of infected mosquitoes will remain the same, or even increase(due to the reduced competition in adult mosquitoes for blood meals)
 
-\subsection{\gls{llins}}%
+\subsection{\texorpdfstring{\gls{llins}}{LLINs}}%
 \label{sub:llins}
 
 \paragraph{Interval of simulation}%
@@ -743,6 +931,14 @@ Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the 
 \subsection{IRS}
 Four insecticide gradients, pyrethroids (including deltamethrin, lambda-cyhalothrin and alpha-cypermethrin) are the main insecticides used by \gls{nmcp} for \gls{irs}.
 
+\section{Environments}%
+\label{sec:environments}
+Core environmental aspects related to vector activity were included, such as water sources for oviposition (egg-laying)\cite{Bomblies2008}, houses for blood meal locations\cite{Gu2009a}, and meteorological data to account for seasonal patterns in transmission\cite{Depinay2004}.
+Rainfall and temperature data were regularly used; model questions included the impact of wet season lengths\cite{Endo2016a} and hysteresis\cite{Yamana2017} on vector populations.
+
+Environmental factors such as temperature and rainfall at different times was incorporated in some models.
+
+
 \section{Costs}
 Cost of Interventions increases when coverage increase.\cite{Winskill2017a} considered two approaches to simulate the function:
 \begin{itemize}
@@ -773,7 +969,7 @@ The delivery part increase as coverage increase. For the linear assumption, J
 	}
 \end{table}
 
-\subsection{\gls{llins}}
+\subsection{\texorpdfstring{\gls{llins}}{LLINs}}
 Review from fields were used to estimate the median unit procurement cost and the delivering cost of \gls{llins}.
 Inflation rate calculator was also included in some studies\cite{Walker2016}.
 
@@ -790,7 +986,7 @@ Inflation rate calculator was also included in some studies\cite{Walker2016}.
 	\end{tabular}
 \end{table}
 
-\subsection{\gls{irs}}
+\subsection{\texorpdfstring{\gls{irs}}{IRS}}
 Range from USDA 2–3 to roughly USDA 20 per unit\cite{Oxborough2016}
 (a unit is standardized across products to cover approximately 250 of wall surface)
 
@@ -809,31 +1005,52 @@ Range from USDA 2–3 to roughly USDA 20 per unit\cite{Oxborough2016}
 
 Perennial and seasonal settings were two concepts describing the seasonal feature in sub-Saharan region.
 
-\subsection{\gls{rts}}%
+\subsection{\texorpdfstring{\gls{rts}}{RTS}}%
 \label{sub:rts}
 Costs of vaccine introduction are calculated by some studies\cite{Hay2004} from the provider perspective, but are limited to cost of
 consumables including vaccines, injection and reconstitution syringes, safety box.
 Prices are scaled up to account for freight\cite{Winskill2017a} and wastage\cite{Hutton2006}.
 
 \section{Parameters}
+Further, no previous models have calibrated all parameters to data.
 
 \paragraph{Sources}%
 \label{par:sources}
+The methods for estimating key parameters varied greatly across the literature.
 Most models used past literature or simulations to determine baseline parameter values.
 Due to the nature of certain inputs, many parameters cannot or have not been estimated in field studies, and consequently authors used expert knowledge to select these values.
 
 \paragraph{Calibration}%
 \label{par:calibration}
+Parameter justification was not always clear\cite{Gurarie2007,Arifin2011a,NiazArifin2013}; when explained, models generally calibrated a range of parameters to existing data, or provided references for their choice of fixed values.
 Studies used models that were either previously calibrated to data or presented calibration as a component of their work.
 Calibration techniques included the use of calibration vectors, least squares, maximum likelihood functions, and visual estimations.
 Bayesian techniques for model fitting could provide credible intervals alongside point estimates of parameters.
 Calibrating all model parameters to data is not implemented by most researchers, which necessarily excludes certain parameter combinations that could produce accurate calibrations.
 
-Average eggs lay by female \textit{Anopheles}: 80 - 100 eggs.
+\paragraph{Equilibrium state}%
+\label{par:equilibrium_state}
+Model also take the advantage of equilibrium state to estimate the parameters\cite{Alves2021}.
+Static models assume the system has reached a steady state solution that does not change with time.
+Static models are simpler to formulate and analyse.
+Dynamic models study the evolution of a system over time.
+Dynamic models can be either deterministic or stochastic, each version could lead to an equilibrium points.
+Studies calibrate part of parameter set by assuming the region has reached the equilibrium state.
 
-Duration of the larval period depends on temperature, in tropical areas, lasts 7 - 15 days.\cite{bayoh_lindsay_2003}
+\begin{parameter}
+  {Average eggs lay by female \textit{Anopheles}}
+80 - 100 eggs.
+\end{parameter}
 
-Carrying capacity in aquatic stage: describe how many mosquito larvae/pupae an environment can support
+\begin{parameter}
+  {Duration of the larval period} 
+Depends on temperature, in tropical areas, lasts 7 - 15 days.\cite{bayoh_lindsay_2003}
+\end{parameter}
+
+\begin{parameter}
+  {Carrying capacity in aquatic stage}
+Describe how many mosquito larvae/pupae an environment can support
+\end{parameter}
 
 \subsection{Experimental Hut Trail}
 Experimental hut studies typically report 24-h productinduced: mortality, blood-feeding inhibition, exophily and deterrence.
@@ -887,8 +1104,7 @@ Explanatory factors:
 \end{parameter}
 
 \begin{parameter}
-	\label{eht:wall_substrate}
-	Wall substrate: Cement or mud
+	\label{eht:wall_substrate} Wall substrate: Cement or mud
 
 \end{parameter}
 
@@ -912,20 +1128,76 @@ Prediction of \gls{eht} outcomes using explanatory factors, combining linear alg
 $\beta_h X^{hi}$ denotes explanatory factors times covarite, which is the linear transformation of the explanatory hypothetical space. The middle part of the formulation then project $\mathbb{R} \twoheadrightarrow (0,1)$.
 
 \section{Evaluation and Validation}
+Accurate predictions of malaria can provide public health and clinical health services with the information needed to strategically implement prevention and control measures.
+Many \gls{abm} had an emphasis on informing policy and explicitly aimed to understand specific programmatic questions.
+To reliably inform public health decisions, there must be confidence in the assumptions guiding model creation, in particular regarding choice of parameter values.
+If modelling groups are considering extending their model frameworks, particularly to influence policy, evaluation and validation against real-world data is necessary.
+
+\subsection{Validation}%
+\label{par:validation}
 Validation was performed on some models.
 All major model frameworks were reported as validated.
 Validation techniques were rarely explained in detail.
 When described, validation was most commonly performed by running a calibrated simulation, and comparing model outputs to a dataset not used for calibration.
+Methods like root mean squared error and absolute difference\cite{Adimi2010, Rahman2011}, 95\% CI(for predicted value and compared to observed)\cite{Chatterjee2009,Gomez-Elipe2007,Roy2011}, average percentage error\cite{Haghdoost2008}, T-test\cite{Xiao2010}, coefficient correlation\cite{Yacob1947} were used.
 For example, validation against \gls{rct}, or \gls{eht}.
-
-Methods of comparing models to data were rarely explained; use of a square distance function , log likelihoods and docking techniques were outlined.
-Successful model validation was often used to justify extending a model framework to include interventions or to assess their potential impact in the location of interest.
+A typical approach for dealing with data for validation was to segment data into a model building or training portion with one other portion(the 'holdout' sample) used for model validation or assessing forecast accuracy.
+Studies\cite{Parveen2021,Rahman2011} implemented these methods to perform model validation.
+The studies divided raw data into training and testing groups by excluding the last year of data, then fit to the remaining data.
+The accuracy of the predictions was then estimated from the prediction residuals.
+In machine learning studies, to prevent over fitting, data were separated into three groups rather than two groups, the training group, cross-validation group and the testing group.
+Model will fit the parameters using training group, adjust them by comparing metrics against cross-validation group and validate the final model performance by the testing group.
 A number of studies concluded that their model did not accurately fit the data used for validation, suggesting incomplete data may explain any discrepancies.
 
-Some studies explicitly mentioned sensitivity analysis or described parameter variation and comparison of outputs.
+\subsection{Model Comparison}%
+\label{par:comparing_models}
+Methods of comparing models to data were rarely explained; use of a square distance function, log likelihoods and docking techniques were outlined.
+Successful model validation was often used to justify extending a model framework to include interventions or to assess their potential impact in the location of interest.
+Direct comparison of methods would be easier if multiple malaria forecasting methods were applied to the same data.
+It would be helpful if we develop a standard dataset and standard index for model fitting.
+
+\begin{table}[htpb]
+  \centering
+  \caption{Model Heterogeneity Comparison}
+  \label{tab:model_heterogeneity_comparison}
+  \begin{tabular}{cc}
+  \toprule
+  model & \\ 
+  \midrule
+  \cite{White2018b} & \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Sensitivity analysis}%
+\label{par:sensitivity_analysis}
+Some studies\cite{Mohammed-Awel2019, White2018b} explicitly mentioned sensitivity analysis or described parameter variation and comparison of outputs.
 The techniques used were generally informal, with methods used rarely explained in detail, and reporting of results was uncommon.
-Where sensitivity analysis was explained, it involved altering calibrated baseline parameter values by a fixed percentage and assessing changes to outputs.
+Where sensitivity analysis was explained, it involved altering calibrated baseline parameter values by a fixed percentage and assessing changes to the response function.
+Speed of loss rate of \gls{llins} adherence\cite{White2018b}\ldots was studies by the sensitivity analysis.
 Formal techniques employed included Latin Hypercube sampling, regression tree analysis, and one-way and probabilistic sensitivity analysis.
+
+\subsection{Performance metrics}%
+\label{par:performance_metrics}
+The diversity in forecasting accuracy measures and the use of scale-dependent measures limits the comparability of forecasting results, making it difficult to identify the optimal predictors and methods for malaria forecasting. 
+%to identify and assess methods, including predictors, used to forecast malaria is important for 
+\subsubsection{Classification metric}
+\paragraph{Classification accuracy}%
+\label{par:classification_accuracy}
+This is the ratio of the total number of accurate predictions to the total number of input sample used.
+\[
+  Accuracy = \frac{Accurate predictions}{Total Predictions}
+.\] 
+
+\paragraph{\gls{auc}}%
+\label{par:auc}
+\gls{auc} is used for evaluating binary classification problems.
+\gls{auc} score provides a good summary of the performance of the receiver operator curves.
+The Receiver Operating Characteristics(ROC) curve was plotted between the false-positive rate (FPR) and true-positive rate (TPR), representing the model’s performance, and then the \gls{auc} score was calculated.
+
+\paragraph{F1 score}%
+\label{par:f1_score}
+
 
 \subsection{Comparing to Randomized Control Trails}
 

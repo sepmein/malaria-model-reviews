@@ -1,0 +1,17 @@
+{
+  "autosave": "",
+  "ui-persist": {
+    "main-board-position": [],
+    "sub-board-position": [],
+    "gtp-console-position": [],
+    "basic-info-position": [],
+    "variation-tree-position": [],
+    "comment-position": [],
+    "board-position-proportion": 4,
+    "winrate-position": [],
+    "window-maximized": false,
+    "main-window-position": [],
+    "toolbar-position": "South"
+  },
+  "filesystem": {"last-folder": ""}
+}
