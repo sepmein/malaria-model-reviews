@@ -34,10 +34,10 @@ function Home () {
           <li>None</li>
         </ul>
         <p>
-          if it's an proportion, then the parameter was a part of father
-          parameter. if it's an duration type, then the parameter should have
-          the duration unit, e.g., days or years. This types of parameter could
-          been overlapped with each other.
+          if it&apos;s an proportion, then the parameter was a part of father
+          parameter. if it&apos;s an duration type, then the parameter should
+          have the duration unit, e.g., days or years. This types of parameter
+          could been overlapped with each other.
         </p>
         <p></p>
       </div>
