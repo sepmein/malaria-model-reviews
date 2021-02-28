@@ -732,6 +732,40 @@ An epidemiology-genetics model was published\cite{Mohammed-Awel2019} for assessi
 The model couples disease epidemiology with vector population genetics and studied the equilibrium state of an deterministic dynamic malaria model and presented the resistance allele dominance associated with the insecticide resistance in the mosquito population.
 Study showed that in moderate and high malaria transmission settings the \gls{itn}-\gls{irs} strategy can lead to the effective control of the disease, but in longer simulation it fails to manage insecticide resistance (as measured in terms of the frequency of resistant allele).
 
+The level of pyrethroid resistance in the mosquito population was described as follows:
+
+$$I = 100 * ( 1 - x )$$
+
+Where $x$ denote the proportion of mosquitoes dying in a standard pyrethroid discriminating dose bioassay.
+$I$ denotes the level of resistance.
+This formula means if the mortality rate of standard discriminating bioassay goes up then the level of resistance goes down.
+It's straitfoward to give such result.
+But is insufficient.
+The result of most standard bioassay in an high resistance level community will be 100\%.
+The discriminating bioassay has limitations.
+
+For a single mosquito, the outcome after contacting some intervention will only be survival and death.
+The possiblity of death follows a \textbf{Bernoulli} distribution:
+
+$$Mortality ~ Bernoulli(p)$$
+or
+$$P(X = k) = p^k p^{(1-k)}$$
+
+Here, $p$ is the possibility of death. $p$ is affected by current factors:
+
+1. The resistance level
+2. The type of insecticide used
+3. The concentration of insecticide
+
+If we simplify the situation, suggest only one type of insecticide.
+Then the factors left for affecting the model is the resistance level of mosquito and the concentration.
+
+If concentration of insecticide was further fixed for simplification. 
+
+$$m = f(R, E)$$
+
+$m$ - mortality rate
+
 \subsubsection{Measurement of Resistance}
 
 Bioassay:
