@@ -4,7 +4,7 @@
 \usepackage[acronym, toc]{glossaries}
 \usepackage{comment}
 \usepackage{nomencl}
-%\usepackage{minted}
+\usepackage{minted}
 \usepackage{xargs}                      % Use more than one optional parameter in new commands
 \usepackage[pdftex, dvipsnames]{xcolor}  % Coloured text etc.
 \usepackage[colorinlistoftodos, prependcaption, textsize=tiny]{todonotes}
@@ -14,7 +14,10 @@
 \usepackage{siunitx}
 \usepackage{booktabs}
 \usepackage{hyperref}
+\usepackage{pdfsync}
+%\usepackage{listings}
 \graphicspath{{./images/}}
+\synctex=1
 
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red, backgroundcolor=red!25, bordercolor=red, #1]{#2}}
 \newcommandx{\change}[2][1=]{\todo[linecolor=blue, backgroundcolor=blue!25, bordercolor=blue, #1]{#2}}
@@ -25,8 +28,8 @@
 \newtheorem{parameter}{Parameter}
 
 % color
-% \pagecolor{black}
-% \color{white}
+%\pagecolor{black}
+%\color{white}
 
 % glossaries
 \makeglossaries
@@ -56,6 +59,7 @@
 \newacronym{ssa}{SSA}{sub-Saharan Africa}
 \newacronym{smc}{SMC}{Seasonal Malaria Chemoprevention}
 \newacronym{swisstph}{SwissTPH}{Swiss Tropical and Public Health Institute}
+\newacronym{vbd}{VBD}{vector borne diseases}
 
 \newglossaryentry{xgboost}
 {name={XGBoost},
@@ -144,7 +148,7 @@
 %\nomenclature{$c$}{Speed of light in a vacuum inertial frame}
 
 % title page
-\title{An Introduction on Mathematical Modelling in Malaria Control}
+\title{An Introduction on Mathematical Modeling in Malaria Control}
 \author{Chunzhe ZHANG}
 \date{Jan 2021}
 
@@ -157,52 +161,50 @@
 \tableofcontents
 
 \section{Introduction}
-Mathematical models is a vital way to help public health practitioners to policy decisions.
-Mathematical models have been introduced into malaria control world for many years.
-History could go back to 1911, Christophers\cite{christophers1911epidemic} developed an early-warning system for malaria epidemics based on rainfall, fever-related deaths and wheat prices.
-Then in 1920s, Ronald Ross introduced the famous version of malaria model.
-In 1970s, model simulations had been compared to field observations in order to estimate the parameter values giving the best fit possible and to evaluate the model by analyzing the discrepancies between the observed and expected values\cite{dietz1974}.
-
 The substantial decade-long reduction in global malaria burden stalled in 2016 with an estimated increase of 5 million cases.
-Modelling suggests that 70\% of the reduction in malaria cases in sub-Saharan Africa (SSA) between 2000 and 2015 was attributable to the implementation of intervention strategies.
-Key interventions included \gls{itn}, artemisinin-based combination therapy (ACT) and indoor residual spraying (IRS).
-Often, field data are used as evidence for the efficacy and cost-effectiveness of selected interventions; however, these methods can be resource intensive, or have prohibitive ethical barriers.
+The mathematical model is a vital way to help public health practitioners to policy decisions.
+Mathematical models have been introduced into the malaria control world for many years.
+History could go back to 1911, Christophers\cite{christophers1911epidemic} developed an early-warning system for malaria epidemics with rainfall, fever-related deaths, and wheat prices.
+Then in the 1920s, Ronald Ross introduced the famous version of the malaria model.
+In the 1970s, model simulations had been compared to field observations to estimate the parameter values giving the best fit possible and to evaluate the model by analyzing the discrepancies between the observed and expected values\cite{dietz1974}.
+Model\cite{Weiss2020e} was applied to understand the potential indirect effects of the COVID-19 pandemic on malaria intervention coverage, morbidity, and mortality.
+Mathematical models could also apply to understand the progression of the disease.
+The interaction between red blood cells, merozoites, and platelets during malaria infection was modeled mathematically\cite{Alves2021} to understand the role of platelets in antiparasitic action.
+
+Modeling suggests 70\% of the reduction in malaria cases in \gls{ssa} between 2000 and 2015 was attributable to the implementation of intervention strategies.
+Key interventions included \gls{itn}, \gls{act}, and \gls{irs}.
+Often, field data are used as evidence for the efficacy, and cost-effectiveness of selected interventions; however, these methods can be resource-intensive, or have prohibitive ethical barriers.
 In such situations, mathematical simulation is increasingly used to provide further insights.
 
-Spatial model\cite{Weiss2020e} was applied to understand the potential indirect effects of the COVID-19 pandemic on malaria intervention coverage, morbidity, and mortality.
-Mathematical model was also applied to understand progression of disease. The interaction between red blood cells, merozoites, and platelets during malaria infection was studied to understand the function of platelets in antiparasitic action.
+The most valuable modeling information for policy-makers is on the effectiveness and cost-effectiveness of malaria interventions and their combinations in different settings, in reducing transmission, morbidity, and mortality, and in potentially interrupting transmission.
 
-Thus, it is crucial to know how they are made and the assumptions on which they are built.
-
-The most valuable modelling information for policy-makers is on the effectiveness and cost-effectiveness of malaria interventions and their combinations in different settings, in reducing transmission, morbidity and mortality, and in potentially interrupting transmission.
-
-Modelling can help to answer questions as:
+Modeling can help answer questions as:
 
 \begin{itemize}
-  \item What combination of intervention would achieve highest impact given fixed resources?
-  \item In low-transmission settings, what combination of interventions or changes can help to interrupt transmission?
+  \item What combination of interventions would achieve the highest impact given fixed resources?
+  \item In low-transmission settings, what combination of interventions or changes can help interrupt transmission?
   \item What's optimal coverage of specific intervention? Is it beneficial to add a second vector control intervention to a population with already high coverage of one intervention?
 \end{itemize}
 
-At \gls{nmcp} level, modelling could help to set up precise criteria based on WHO recommendations, to create a transition from policy-making to planning. For product research and development planners, models could help to devise target product profiles for new interventions, for example required minimum efficacy and durability of an intervention.
+At the \gls{nmcp} level, modeling could help set up precise criteria on WHO recommendations, to create a transition from policy-making to planning. For product research and development planners, models could help devise target product profiles for new interventions, for example requiring minimum efficacy and durability of an intervention.
 
-However, differences in model structures and data been used in model calibration results in no consensus yet exists on the optimal version or output of the model.
-Conflicts in the different model predictions arising from the data sets used in their calibration and the behind mechanism.
-That's why this document was created to facilitate the understanding the
+However, differences in model structures and data being used in model calibration result in no consensus yet exists on the optimal version or output of the model.
+Conflicts in the different model predictions arise from the data sets used in their calibration and the behind mechanism.
+Thus, we must know how the models are assembled and the assumptions on which they are built.
 
 \section{Mathematical Methods}
 
 Models are commonly classified as deterministic or stochastic.
-Deterministic models assume the system follows a fixed and defined rule with no random variation or noise; stochastic models assume that randomness or noise is present.
-Stochastic models assume randomness which are not understandable or could not been implemented is important and explicitly include it in the system.
-Detailed stochastic models can provide quantitative evaluations and predictions of the effects of interventions on the levels of malaria transmission, morbidity and mortality, though they do not always give general rules.
-While deterministic paradigm assume the randomness is neglectable and consider only the average behavior of the system.
-To understand rare events, such as malaria death or in elimination settings, stochastic model is essential.
-For the high or intermediate transmission settings, and system do not need to explore the heterogeneities, deterministic could be considered.
+Deterministic models assume the system follows a fixed and defined rule with no random variation or noise; stochastic models assume randomness or noise is present.
+While deterministic paradigms assume the randomness is neglectable and consider only the average behavior of the system.
+Stochastic models assume randomness which is not understandable or could not be implemented is important and explicitly include it in the system.
+Detailed stochastic models can provide quantitative evaluations and predictions of the effects of interventions on the levels of malaria transmission, morbidity, and mortality, though they do not always give general rules.
+To understand rare events, including malaria death or in elimination settings, a stochastic model is essential.
+For the high or intermediate transmission settings, and systems that do not need to explore the heterogeneity, deterministic could be considered.
 Both paradigms of models are useful and have their place in our understanding of malaria and in planning for malaria control.
 
-Other forecasting approaches included statistical modelling, and machine-learning methods were also been applied in this field.
-The statistical methods included generalised linear models, Auto-Regressive Integrated Moving Average (ARIMA) models\cite{box2015time} and Holt-Winters models\cite{Chatfield1978}.
+Other forecasting approaches, including statistical modeling, and machine-learning methods are also being applied in this field.
+The statistical methods included generalized linear models, Auto-Regressive Integrated Moving Average (ARIMA) models\cite{box2015time,Anokye2018}, and Holt-Winters models\cite{Chatfield1978}.
 Other authors\cite{Toh2021a,Libbrecht2015,Nkiruka2021,Verma2020,Kim2019,Khameneh2014,Ebhuoma2018,Hancock2020} predicted malaria incidence using neural networks, a machine-learning technique.
 
 \paragraph{Differences of two models}%
@@ -222,25 +224,124 @@ Other authors\cite{Toh2021a,Libbrecht2015,Nkiruka2021,Verma2020,Kim2019,Khameneh
 	\caption{Difference of Deterministic and Stochastic Model}
 \end{table}
 
-\subsection{Deterministic Model}
+\subsection{Deterministic, Stochastic and Compartmental Models, the relationships and differences}
+'Deterministic, stochastic and compartmental' are the three jargons which shown up frequently in malaria mathematic modeling.
+To gain a better insight of the mathematical modeling, awareness of these concepts is an prerequisite.
 
-Traditionally, most models tended to be population-based, treating all individuals within a state group as identical.
-Or compartmental model.
+\subsubsection{Compartmental}%
+\label{subsubsec:compartmental}
+\textbf{Compartment}, or alcove, cell, chamber, is a nomenclature for grouping an assemblage of individuals into clusters. 
+Compartmental models describe a dynamic system with a finite chambers, each connect one or more chambers.
+In epidemiology, compartmental modeling involves stratification of population with multiple compartment, including susceptible, treatment, isolation, exposed, and so on.
+Models then further focus on interactions and transitions between population strata, and have been a mainstay of modeling in such area for more than a century.
 
-Compartmental models, which focus on interactions and transitions between population strata, have been a mainstay of such modelling for more than a century.
+Compartmental models simplify the mathematical modeling of infectious diseases.
+The population is assigned to compartments with labels – for example, S, I, or R, (Susceptible, Infectious, or Recovered).
+People may progress between compartments. The order of the labels usually shows the flow patterns between the compartments; for example \textbf{SEIS} means susceptible, exposed, infectious, then susceptible again.
 
-\improvement{add definition}
+\paragraph{SIR Model}
+\subparagraph{SI Model}
+The first effort of introducing compartmental models into epidemiology is to separate population into $I$ and $R$ compartment.
+Here, $I$ stands for infected population.
+$R$ stands for recovered population.
 
-\paragraph{When the model is suitable for deterministic model?}%
-\label{par:when_the_model_is_suitable_for_deterministic_model_}
+The SI model assumes a constant rate of recovery rate of the infection group.
+\begin{align}
+  \frac{dI}{dt} &= - \gamma I\\
+  \frac{dR}{dt} &= \gamma I
+\end{align}
 
-First, the less importance of stochasticity in median or high-transmission settings, requires an alternative approach to stochastic compartmental methods.
-Second, do not require discrete population simulations to incorporate spatially explicit environments at fine resolutions.
-Third, do not require to represent heterogeneities in disease progression and severity on the individual patient level. 
+$\gamma$ - recovery rate
 
-\subsubsection{SIR Model}
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{si-model}
+  \caption{Simulation of SI Model}
+  \label{fig:si-model}
+\end{figure}
 
-\subsubsection{SEIR Model}
+\subparagraph{SIR Model}
+SIR model is the most fundamental and basic infectious disease model by introducing another compartment called S, which stands for the susceptible compartment.
+\begin{align}
+  \frac{dS}{dt} & = - \lambda S  \\
+\frac{dI}{dt} & = \lambda S - \gamma I \\
+\frac{dR}{dt} & = \gamma I
+\end{align}
+$\lambda$ -  \gls{foi}
+
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sir-model}
+  \caption{Simulation of SIR Model}
+  \label{fig:sir-model}
+\end{figure}
+\[
+\frac{dS}{dt}=-\lambda S-\mu S+bN
+.\] 
+
+The dynamics of an epidemic, for example, the flu, are often much faster than the dynamics of birth and death, therefore, birth and death are often omitted in simple compartmental models.
+
+In the above setting, $\lambda$ or  \gls{foi} is considered as constant. But this does not abide by real world scenario, in which the \gls{foi} will drop down as the susceptible population runs out.
+In this setting, the $\lambda$ in SIR model was further extended to be dynamic.
+\begin{equation}
+  \lambda = \beta \frac{I}{N}
+\end{equation}
+
+$\beta$ is the infection rate, and $N$ is the total population.
+Different combination of $\beta$ and $\gamma$ was explored by studies, and the ratio between these two key parameters forms the very first idea of \gls{R0}.
+\begin{equation}
+  R_0 = \frac{\beta}{\gamma}
+\end{equation}
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sir-model-beta-gamma}
+  \caption{Comparison of combination of $\beta$ and $\gamma$}
+  \label{fig:sir-model-beta-gamma}
+\end{figure}
+
+By the definition, if $\beta > \gamma$ the epidemic will take off, and vice versa.
+However, the definition of \gls{R0} changes accordingly with the different model.
+For example, if the SIR model separate infection group into symptomatic and asymptomatic infection.
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sir-model-asymptomatic}
+  \caption{SIR model structure with asymptomatic compartment}
+  \label{fig:sir_model_structure_with_asymptomatic_compartment}
+\end{figure}
+
+The calculation of \gls{R0} will change to:
+\begin{equation}
+  R_0 = p \frac{\beta_c}{\gamma_c} + (1-p) \frac{\beta_N}{\gamma_N}
+\end{equation}
+
+Studies further extend SIR model to model population turnover and waning immunity against some disease.
+For example, by incorporating birth and death effect in the model, the number of infected people oscillates over time.
+\begin{align}
+  \frac{dS}{dt} & = - \lambda S - \mu S + bN  \\
+  \frac{dI}{dt} & = \lambda S - \gamma I - \mu I \\
+  \frac{dR}{dt} & = \gamma I - \mu R
+\end{align}
+\begin{center}
+$\mu$ - the mortality rate of each group and \\
+$b$ - the birth rate of total population
+\end{center}
+
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sir-model-birth-death}
+  \caption{SIR Model Simulation with birth and death}
+  \label{fig:sir-model-birth-death}
+\end{figure}
+
+These are sharp epidemic cycles: epidemics reoccur repeatedly over time, although the peaks become progressively smaller and eventually disappear.
+The first peak is the one we looked at above.
+This pattern occurs because the disease has a much shorter duration than the human population turnover.
+Once an epidemic has spread through the population and depleted the susceptible pool, it takes a long time for the susceptible to replenish through births.
+This is why we see these deep and long troughs (around 70 years until the second epidemic) between epidemics.
+
+\paragraph{SEIR Model}
 When a pathogen appears in a host community, it partitions individuals in the community into categories depending on parasite density inside them and the type of infection.
 These categories or compartments are represented by standard notation of S-E-I-R.
 In a simple form they are as follows: the first group consists of the fraction of host population that is Susceptible (S) to infection; then comes the Exposed (E) class - the fraction of population whose individuals are infected by the pathogen, but not capable of passing on the infection to others during a latent period.
@@ -249,23 +350,41 @@ Finally, those individuals who remove from the infection(mortality or recovered)
 There are variations in the compartment structure depending on the type of disease.
 For example, the I class of individuals may not recover at all and die; R can consist of individuals, who recover with temporary or permanent immunity, thereby further subdividing the epidemiological compartments.
 
-\subsubsection{Other Variation}
+\paragraph{\gls{vbd} Model}
 
-\subsection{Stochastic Model}
+\subsubsection{Deterministic vs Stochastic}
+\label{subsubsec:deterministic_vs_stochastic}
+
+Deterministic models assume that known average rates with no random deviations are applied to large populations.
+For example if 1,000 individuals each have a 90\% chance of surviving 1 year, then the model reasonably assume that 900 of them will indeed survive.
+
+
+Traditionally, since the scale of malaria incidence globally, most models tended to be population-based, treating all individuals with compartment. Within a compartment individual were treated as identical, and 
+
+\paragraph{Deterministic Model}%
+\label{par:deterministic_model}
+
+\paragraph{Stochastic Model}
 
 %Stochastic means has a random value. The stochastic version of 
 Also known as epidemiological \gls{abm}, stochastic model is a special use case of a broader class of \gls{abm}.
+\improvement{add definition}
 It is individual based version of mathematical model, require multiple run to simulate.
 \gls{abm} is a class of computational models to simulate actions and interactions between `agents'.
 The first version of \gls{abm} can be track back to 1971\cite{Schelling1971}.
 More recently \gls{abm} have been used to inform public health interventions against flu\cite{Ferguson2006a, Ferguson2005} and COVID-19\cite{Maziarz2020, Ferguson2020, Chang2020}
 
-Modellers are increasingly adopting agent-based approaches, which model hosts, vectors and/or their interactions on an individual level.
-One reason for the increasing popularity of such models is their potential to provide enhanced realism by allowing system-level behaviours to emerge as a consequence of accumulated individual-level interactions, as occurs in real populations.
+Modelers are increasingly adopting agent-based approaches, which model hosts, vectors and/or their interactions on an individual level.
+One reason for the increasing popularity of such models is their potential to provide enhanced realism by allowing system-level behaviors to emerge as a consequence of accumulated individual-level interactions, as occurs in real populations.
 
-The major advantage of \gls{abm} is the heterogeneity and stochasticity they could provide.
+The major advantage of \gls{abm} is the heterogeneity and stochasticity they could provide, but come at the sacrifice of the much higher computational resources.
 
-The vantage of \gls{abm} come at the price of the much higher computational resources.
+\subparagraph{When the model is suitable for deterministic model?}%
+\label{par:when_the_model_is_suitable_for_deterministic_model_}
+
+First, the less importance of stochasticity in median or high-transmission settings, requires an alternative approach to stochastic compartmental methods.
+Second, do not require discrete population simulations to incorporate spatially explicit environments at fine resolutions.
+Third, do not require to represent heterogeneities in disease progression and severity on the individual patient level. 
 
 \subsection{Forward Step, From Mathematical Formula to Real World}
 
@@ -304,7 +423,7 @@ Full posterior inference
 
 Approaches techniques such as \gls{mcmc} and approximate Bayesian computation are increasing in popularity as including uncertainty in model parameters becomes more common [126].
 \gls{mcmc} can search the entire parameter space, or more precisely that part of parameter space that has non-negligible posterior probability.
-MCMC has already been used in malaria ensemble modelling [108, 116, 118] and parameter estimation by Griffin et al[14], as well as in modelling of other infectious diseases [124, 125].
+MCMC has already been used in malaria ensemble modeling [108, 116, 118] and parameter estimation by Griffin et al[14], as well as in modeling of other infectious diseases [124, 125].
 
 \paragraph{Burn in}%
 \label{par:burn_in}
@@ -314,7 +433,7 @@ MCMC has already been used in malaria ensemble modelling [108, 116, 118] and par
 Given that uncertainty remains even after calibration, it is important to apply a systematic and comprehensive approach to parameter estimation before using models for predicting parameter impact or forecasting.
 
 \subsection{Length of Model Simulation}
-3-4 years of length is a common length for simulating the effectiveness of \gls{llins}. However, longer length like 20 years was used in some studies in order to understand longer term effectiveness\cite{Walker2016}.
+3-4 years of length is a common length for simulating the effectiveness of \gls{llins}. However, longer length like 20 years was used in some studies to understand longer term effectiveness\cite{Walker2016}.
 
 \paragraph{time step}%
 \label{par:time_step}
@@ -386,7 +505,7 @@ Increasing clarity in model reporting would be of great benefit to both the crea
 While many papers included detailed supplementary materials for additional results, project descriptions and calibration, validation, sensitivity analysis and optimization techniques, the intricacies of these techniques often unclear.
 To make model descriptions more understandable and complete, thereby making \gls{abm} less subject to criticism for being irreproducible, a protocol called \gls{odd} \cite{Grimm2010} was published in 2006 to standardize the published descriptions of \gls{abm}.
 Some models that used it \cite{Zhu2015, Zhu2015a, Watson2017} were simple to understand and appeared easily replicable by external groups.
-Further transparency includes sharing of the mathematics and code{Watson2017} of models. These small steps in documentation would allow for increased verification and validation of models, as well as increasing opportunities for collaboration between modelling groups.
+Further transparency includes sharing of the mathematics and code{Watson2017} of models. These small steps in documentation would allow for increased verification and validation of models, as well as increasing opportunities for collaboration between modeling groups.
 
 \subsection{Machine learning}%
 \label{sub:machine_learning}
@@ -404,9 +523,11 @@ Study\cite{Verma2020} used backpropagation neural network to predict the inciden
 An equilibrium is the simplest possible solution to a dynamical system.
 It is a solution where the state variable is a constant; the variable doesn't change with time at all.
 Dynamic systems with constant parameters will enter an equilibrium state after a length of simulation.
-Studies used the equilibrium state to calculate the parameters, \improvement{TODO: added reference} and to explore the optimal interventions coverage of \gls{llins}.
+Studies\cite{Handari2020, Nwankwo2019,NiazArifin2013,Heesterbeek2015a,Karl2016,Olaniyi2020,Stuckey2014,Tompkins2013,Tompkins2013,Mbogo2018,Winskill2019,Smith2019,Briet2013} used the equilibrium state to calculate the parameters, and to explore the optimal interventions coverage of \gls{llins}.
 Through the application of Pontryagin’s maximum principle, study used numerical simulations to determine an optimal control strategy\cite{Tchoumi2020}.
-
+Analysis of the equilibrium points with their local stability and sensitivity analysis of the basic reproduction number \gls{R0} was studied analytically and numerically.
+Two types of equilibrium points were analyzed, namely the disease-free equilibrium points and the endemic equilibrium points.
+Some studies further altered the intervention parameters to obtain equilibrium states in varying control strategies, 
 \section{Host}%
 \label{sec:Host}
 Key simulated human factors in the models included disease states, demography, host immunity.
@@ -731,40 +852,6 @@ One comment on the second point is that it seems there are some certain level of
 An epidemiology-genetics model was published\cite{Mohammed-Awel2019} for assessing the impact of insecticides resistance in the mosquito population.
 The model couples disease epidemiology with vector population genetics and studied the equilibrium state of an deterministic dynamic malaria model and presented the resistance allele dominance associated with the insecticide resistance in the mosquito population.
 Study showed that in moderate and high malaria transmission settings the \gls{itn}-\gls{irs} strategy can lead to the effective control of the disease, but in longer simulation it fails to manage insecticide resistance (as measured in terms of the frequency of resistant allele).
-
-The level of pyrethroid resistance in the mosquito population was described as follows:
-
-$$I = 100 * ( 1 - x )$$
-
-Where $x$ denote the proportion of mosquitoes dying in a standard pyrethroid discriminating dose bioassay.
-$I$ denotes the level of resistance.
-This formula means if the mortality rate of standard discriminating bioassay goes up then the level of resistance goes down.
-It's straitfoward to give such result.
-But is insufficient.
-The result of most standard bioassay in an high resistance level community will be 100\%.
-The discriminating bioassay has limitations.
-
-For a single mosquito, the outcome after contacting some intervention will only be survival and death.
-The possiblity of death follows a \textbf{Bernoulli} distribution:
-
-$$Mortality ~ Bernoulli(p)$$
-or
-$$P(X = k) = p^k p^{(1-k)}$$
-
-Here, $p$ is the possibility of death. $p$ is affected by current factors:
-
-1. The resistance level
-2. The type of insecticide used
-3. The concentration of insecticide
-
-If we simplify the situation, suggest only one type of insecticide.
-Then the factors left for affecting the model is the resistance level of mosquito and the concentration.
-
-If concentration of insecticide was further fixed for simplification. 
-
-$$m = f(R, E)$$
-
-$m$ - mortality rate
 
 \subsubsection{Measurement of Resistance}
 
@@ -1165,7 +1252,7 @@ $\beta_h X^{hi}$ denotes explanatory factors times covarite, which is the linear
 Accurate predictions of malaria can provide public health and clinical health services with the information needed to strategically implement prevention and control measures.
 Many \gls{abm} had an emphasis on informing policy and explicitly aimed to understand specific programmatic questions.
 To reliably inform public health decisions, there must be confidence in the assumptions guiding model creation, in particular regarding choice of parameter values.
-If modelling groups are considering extending their model frameworks, particularly to influence policy, evaluation and validation against real-world data is necessary.
+If modeling groups are considering extending their model frameworks, particularly to influence policy, evaluation and validation against real-world data is necessary.
 
 \subsection{Validation}%
 \label{par:validation}
@@ -1188,7 +1275,7 @@ A number of studies concluded that their model did not accurately fit the data u
 Methods of comparing models to data were rarely explained; use of a square distance function, log likelihoods and docking techniques were outlined.
 Successful model validation was often used to justify extending a model framework to include interventions or to assess their potential impact in the location of interest.
 Direct comparison of methods would be easier if multiple malaria forecasting methods were applied to the same data.
-It would be helpful if we develop a standard dataset and standard index for model fitting.
+It would be helpful if we develop a standard dataset and standard index for model comparison.
 
 \begin{table}[htpb]
   \centering
@@ -1214,6 +1301,7 @@ Formal techniques employed included Latin Hypercube sampling, regression tree an
 \subsection{Performance metrics}%
 \label{par:performance_metrics}
 The diversity in forecasting accuracy measures and the use of scale-dependent measures limits the comparability of forecasting results, making it difficult to identify the optimal predictors and methods for malaria forecasting. 
+Methods like Akaike’s information criterion, Bayesian information criterion, the coefficient of determination, mean absolute error for regression models; classification accuracy, \gls{auc}, F1 score for classification models were used to choose a best fit model parameters.
 %to identify and assess methods, including predictors, used to forecast malaria is important for 
 \subsubsection{Classification metric}
 \paragraph{Classification accuracy}%
@@ -1232,6 +1320,41 @@ The Receiver Operating Characteristics(ROC) curve was plotted between the false-
 \paragraph{F1 score}%
 \label{par:f1_score}
 
+\paragraph{Akaike's information criterion}%
+\label{par:akaike_s_information_criterion}
+
+\paragraph{Least-squares estimation}%
+\label{par:least_squares_estimation}
+
+\begin{minted}
+[
+frame=lines,
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=LightGray,
+fontsize=\footnotesize,
+linenos
+]
+{R}
+
+SIR_SSQ <- function(parameters, dat) {  
+  result <- as.data.frame(
+    ode(y = initial_state_values # named vector 
+            , times = times      # vector of times
+            ,  func = SIR_fn     # SIR function
+            , parms = parameters)
+    )
+    # assumes the data you are fitting to has a column "I"
+    dat <- na.omit(dat) # within the function, 
+                        #select complete cases only from dat
+
+    #select from result$I where the times 
+    #match the times in the data  
+    deltas2 <- (result$I[result$time %in% dat$time] - dat$I)^2   
+    SSQ   <- sum(deltas2)
+    return(SSQ)
+    }
+\end{minted}
 
 \subsection{Comparing to Randomized Control Trails}
 
