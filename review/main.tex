@@ -341,31 +341,31 @@ There are variations in the compartment structure depending on the type of disea
 For example, the I class of individuals may not recover at all and die; R can consist of individuals, who recover with temporary or permanent immunity, thereby further subdividing the epidemiological compartments.
 
 \paragraph{\gls{vbd} Model}
-Ross-McDonald model is the most important 
+Ross-McDonald model is the most important
 
 \begin{figure}[htpb]
-  \centering
-  \includegraphics[width=0.8\textwidth]{ross-mcdonald}
-  \caption{Ross-McDonald Model Structure}
-  \label{fig:ross-mcdonald}
+	\centering
+	\includegraphics[width=0.8\textwidth]{ross-mcdonald}
+	\caption{Ross-McDonald Model Structure}
+	\label{fig:ross-mcdonald}
 \end{figure}
 
 \begin{align}
-  \frac{{dS}_v}{dt} & = \mu_v N_v - ab_vS_v\frac{I_h}{N_h} - \mu_v S_v \\
-  \frac{{dI}_v}{dt} & =\ ab_vS_v\frac{I_h}{N_h}-\mu_v I_v \\
-  \frac{{dS}_h}{dt} & =\ -\frac{ab_h}{N_h}S_hI_v \\
-  \frac{{dI}_h}{dt} & =\ \frac{ab_h}{N_h}S_hI_v-{\rm rI}_h \\
-  \frac{{dR}_h}{dt} & =\ {\rm rI}_h 
+	\frac{{dS}_v}{dt} & = \mu_v N_v - ab_vS_v\frac{I_h}{N_h} - \mu_v S_v \\
+	\frac{{dI}_v}{dt} & =\ ab_vS_v\frac{I_h}{N_h}-\mu_v I_v              \\
+	\frac{{dS}_h}{dt} & =\ -\frac{ab_h}{N_h}S_hI_v                       \\
+	\frac{{dI}_h}{dt} & =\ \frac{ab_h}{N_h}S_hI_v-{\rm rI}_h             \\
+	\frac{{dR}_h}{dt} & =\ {\rm rI}_h
 \end{align}
 \begin{centering}
-$S_v$ - Susceptible Vector  \\
-$I_v$ - Infected Vector\\
-$S_h$ - Susceptible Host\\
-$I_h$ - infected\ host\\
-$R_h$ – recovered host\\
-$\alpha$ - biting rate \\
-$b_v$ – Probability of infection from an infected host to a susceptible vector\\
-$b_h$ – Probability of infection from an infected vector to a susceptible host
+	$S_v$ - Susceptible Vector  \\
+	$I_v$ - Infected Vector\\
+	$S_h$ - Susceptible Host\\
+	$I_h$ - infected\ host\\
+	$R_h$ – recovered host\\
+	$\alpha$ - biting rate \\
+	$b_v$ – Probability of infection from an infected host to a susceptible vector\\
+	$b_h$ – Probability of infection from an infected vector to a susceptible host
 \end{centering}
 
 \paragraph{\texorpdfstring{\gls{R0}}{R0}}%
@@ -381,14 +381,14 @@ One index of malaria transmission intensity is vectorial capacity, the number of
 
 Vectorial Capacity is defined by the following equation:
 \begin{equation}
- V\ =\ \frac{ma^2p^n}{-\ln{\left(p\right)}} 
+	V\ =\ \frac{ma^2p^n}{-\ln{\left(p\right)}}
 \end{equation}
 
 \begin{centering}
-$m$ – ratio vector to human\\
-$a$ – vector human biting rates\\
-$p$	– probability mosquito survive throughout one day\\
-$n$	–	\gls{eip}
+	$m$ – ratio vector to human\\
+	$a$ – vector human biting rates\\
+	$p$	– probability mosquito survive throughout one day\\
+	$n$	–	\gls{eip}
 \end{centering}
 
 Vectorial capacity was analyzed by multiple studies\cite{LeMenach2007a,Bomblies2009b,Briet2019,AnjuViswan2019,Molineaux1978,Gerardin2017,Bomblies2014,Weaver2010a}.
@@ -412,7 +412,7 @@ Deterministic models assume the system follows predefined and stationary rules w
 For example if 1,000 individuals each have a 90\% chance of surviving 1 year, then the deterministic model reasonably assume that 900 of them will indeed survive.
 
 This paradigms assume the randomness is neglectable and combine the average behavior of the system and consider this behavior as a holism perspective.
-For the high or intermediate transmission settings, plus systems that do not need to explore heterogeneities, deterministic is a reasonably choice. 
+For the high or intermediate transmission settings, plus systems that do not need to explore heterogeneities, deterministic is a reasonably choice.
 Traditionally, since the scale of malaria incidence was quite large globally, most malaria mathematical models tended to be population-based, treating all individuals with compartment.
 Within each compartment, individual were treated as identical.
 
@@ -449,7 +449,7 @@ Suppose two compartments at time $t$ in the model called $X_i(t)$ and $X_j(t)$. 
 For deterministic model, the count of individuals in $X_i(t)$ will decrease because of the flow-out to $X_j(t)$.
 Thus, the count of individuals at next time step $t+1$ in $X_i$ is:
 \begin{equation}
-  X_i(t+1) = X_i(t) - X_i(t)p_{ij}
+	X_i(t+1) = X_i(t) - X_i(t)p_{ij}
 \end{equation}
 
 For the compartmental stochastic model, three broad methods of individual simulation were commonplace in literatures, each with differing degrees of agent autonomy.
@@ -472,10 +472,10 @@ Models will only be trusted if they conform to the real world data.
 %Full posterior inference
 %\subsubsection{Bayesian Models}
 %\subsubsection{MCMC}
-Approaches techniques such as \gls{mcmc} \cite{Hastings1970} and approximate Bayesian computation are increasing in popularity as including uncertainty in model parameters becomes more common. 
+Approaches techniques such as \gls{mcmc} \cite{Hastings1970} and approximate Bayesian computation are increasing in popularity as including uncertainty in model parameters becomes more common.
 
 \gls{mcmc} can search the entire parameter space or part of parameter space that has non-negligible posterior probability and produces a given number of samples.
-Results called \gls{mcmc} chain was produced from the parameter distribution. 
+Results called \gls{mcmc} chain was produced from the parameter distribution.
 The main extension compared to traditional least squares parameter estimation producing one ’best fitting’ point estimate is that \gls{mcmc} create a parameter combination that fit the measured data within the limits of the confidence intervals estimated for the measurements.
 \gls{mcmc} has already been used in malaria ensemble modeling\cite{Cameron2015,Penny2015,Penny2015a} and parameter estimation, as well as in modeling of other infectious diseases.
 Other variation like reversible jump \gls{mcmc}, which is initialized with a model containing a sub- set of the possible covariates, is also applied in detecting risk factors for malaria transmission\cite{Millar2018a}.
@@ -580,13 +580,19 @@ These small steps in documentation would allow for increased verification and va
 \begin{itemize}
 	\item ShinyStan
 	\item OpenMalaria
-	%\item \href{https://github.com/MWhite-InstitutPasteur/Pvivax_IBM}{Pvivax_IBM}
-  \item OpenBugs - \gls{mcmc} fitting \cite{Lunn2009}
+	      %\item \href{https://github.com/MWhite-InstitutPasteur/Pvivax_IBM}{Pvivax_IBM}
+	\item OpenBugs - \gls{mcmc} fitting \cite{Lunn2009}
+	\item Tensorflow Probability
+	\item Numpy
+	\item Pandas
+	\item Pymc3
 \end{itemize}
 
 \section{Host}%
 \label{sec:Host}
-
+Host is an important part of malaria mathematical modeling.
+Malaria vector do not only feed on human host, some species have a lower \gls{hbi}.
+However, most models only explicitly incorporated human hosts.
 Key simulated human factors in the models included disease states, demography, host immunity.
 
 \subsection{Disease state}
@@ -601,7 +607,7 @@ As the greatest public health burden is attributable to \textit{P. falciparum}, 
 A human with a \textit{P. falciparum} infection is not infectious until a fraction of the blood-stage parasites become gametocytes and then mature.
 
 \begin{parameter}
-	{Period of a human get an infectious bite to infectious}
+	{Period from a human get an infectious bite to infectious}
 	{8-10 days}
 \end{parameter}
 
@@ -634,7 +640,7 @@ Duration of infection in the model followed convolution of exponential distribut
 	{Untreated or improperly treated infection last about 200 days on average, some could last for more than a year.}
 \end{parameter}
 
-Human Host could be in one of the following state:
+Human host could be in one of the following state:
 \begin{itemize}
 	\item Susceptible
 	\item Treating
@@ -647,13 +653,17 @@ Human Host could be in one of the following state:
 \begin{figure}[t]
 	\centering
 	\includegraphics[keepaspectratio=true, scale=0.8]{images/disease-state-transition-diagram.png}
+	\label{fig:human_state}
 	\caption{Human host disease states transition}
 \end{figure}
 
-Models from \gls{swisstph} had at their core individual humans with varying parasite densities. The varying level then will affect the possibilities of the state transition. Infected human will be more likely transit to the next level when they have higher densities.
+The rate of state transition decide the trends of the system.
+In \ref{fig:human_state}, each arrow denote a transition from one state to another.
+And the transition rates varies from each other.
+The system will reach an equilibrium after a length of simulation.
 
+Malaria models from \gls{swisstph} had at their core individual humans with varying parasite densities. The varying level then will affect the possibilities of the state transition. Infected human will be more likely transit to the next level when they have higher densities.
 Models from GSK predicted the clinical malaria based on parasite densities using MAP categories fro low, moderate and high transmission.\cite{Hay2004}
-
 Other study separate infected individuals into three different groups(infected high-density parasites with fever, \gls{pvprlm}, infected PCR detectable parasites)\cite{White2018b}, by symptoms and detectability.
 
 \subsection{Demography}
@@ -662,32 +672,42 @@ For Imperial the age structure of the population was derived from the life table
 For OpenMalaria a similar distribution was used, although with a higher mortality in the first year of life.
 For GSK and EMOD DTK a simple geometric distribution was used that provided a close match to other groups.
 In all models the total number of simulated individuals was fixed with a non-growing static population for baseline projections.
+Due to the similarity of \gls{ssa} population structure, truncated exponential distribution was used to simulate an age structure in studies\cite{White2018b}.
 
 \subsubsection{Age}
 \improvement{TODO: Of xx papers, xx stratified individuals by age}
-Commonly, age was used in the calculation of human biting rates, because of its strong correlation with body surface area.
-Other age-varying factors were adaptive and maternal immunity and duration of infection.
-\gls{pfpr} was usually calculated at age groups.
+Due to the strong correlation with body surface area and the tendency of adults to spend a greater proportion of time outdoors during the evening, age was used in the calculation of human biting rates.
+Other age-varying factors were adaptive to age. For example, maternal immunity and duration of infection \gls{pfpr} was usually calculated at age groups.
 If intervention were targeting specific age group, for example \gls{rts}, stratification in model output was used to assess the impact at different age groups.
-
 Relationship between age and incidence was compared between models.
 
-Human population data
-Often lack in some areas
-Could be estimated through satellite observations
-Paper high resolution population maps for low income nations: combining land cover and census in East Africa
+Human population data was often lack in some areas.
+Some studies estimated the missing data by using data from other similar countries.
+Others estimated the age through satellite observations.
+Study combined land cover and census in East Africa and generated high resolution population maps for low income nations.
+
 
 \subsubsection{Birth and Death}
 Birth and death was simulated in some \gls{abm} models.
-Birth was carefully calculated to ensure a constant population in \improvement{TODO: add citation}.
+Birth was carefully calculated to ensure a constant population\improvement{TODO: add citation}.
 However in south Saharan African countries, the stalled decreasing trend of malaria cases may related to the increasing population.
+An universal death rate was introduced to some models \improvement{TODO: add citations} to ensure a constant age distribution.
+Death rate was also calculated based on the severity of malaria infection.
+\begin{parameter}
+	{Human host death rate:}
+	{$\mu_H$}
+\end{parameter}
+The new born children in model inherited part of mothers' immunity level.
+But this maternal immunity decays over time.
+Thus, in the malaria model implementation, inclusion of birth in the model will decrease the overall average immunity against malaria and make interventions less effective to the disease due to a higher possibility to be infected after an infectious bite.
 
-An universal death rate was introduced to some models \improvement{TODO: add citations} to ensure a constant age distribution. Death rate was also calculated based on the severity of malaria infection.
-
-\subsubsection{In and Out}
+\subsubsection{Population Mobility: move in and move out an area}
 Increasing human mobility is creating highly favorable conditions for the persistence of diseases being targeted for elimination.
-Host mobility is not a top priority factor for the malaria model.
-In malaria elimination scenario, imported cases is an most important threat.
+However, host mobility is not a top priority factor for the malaria model.
+Models assumed an enclosed area with a constant population for simplification.
+That was because in the high or intermediate disease transmission setting, disease important act as a less significant proportion of total infections.
+
+But in malaria elimination scenario, imported cases is an most important threat.
 Modeling population flow in that case would be helpful for countries in elimination stage to quantify the threats.
 In that case, predictive models of human movement are needed to help inform how best to target strategies.
 
@@ -701,25 +721,38 @@ On the contrast to host mobility, vector mobility is rarely included in the math
 Vector mobility may be an important factor especially for the impact analysis of invasive vectors such as \textit{An. stephensi}.
 
 \subsection{Immunity}
-
+The dynamics of acquisition and loss of immunity, are key parameters determining the speed of decline in parasite prevalence once transmission is reduced.
 Immunity was depicted as being dependent on levels of anti-parasite immunity (AP) and clinical immunity (AC).
+The acquisition of both anti-parasite and clinical immunity is assumed to be age and exposure dependent.
+
 In particular, anti-parasite immunity is assumed to have two effects:
 \begin{itemize}
-	\item reducing the probability that a blood-stage infection will achieve sufficiently high density to be detectable by light microscopy);
+	\item reducing the probability that a blood-stage infection will achieve sufficiently high density to be detectable by light microscopy;
 	\item increasing the rate at which low density infections are cleared (rPCR).
 \end{itemize}
 Clinical immunity is assumed to reduce the probability that a high-density blood-stage infection will progress to cause a symptomatic episode of clinical malaria.
 
 The immunity was separated into several categories:
 
+Immunity could be further dissected into four categories:
+\begin{itemize}
+	\item  maternal immunity, which protects against clinical disease, is assumed to decay exponentially from birth;
+	\item  anti-disease immunity, which reduces the probability of developing clinical symptoms on infection;
+	\item infection-blocking immunity;
+	\item anti-parasite immunity, help individuals control parasite densities and leave the patent infection state more quickly
+\end{itemize}
+Infection-blocking immunity and anti-parasite immunity are both exposure-driven.
+whilst anti-parasite immunity is assumed to develop with age, conditional on having been exposed.
+
 \paragraph{Maternal Immunity}%
 \label{par:maternal_immunity}
 Children will get the maternal antigen from mother.
 Model assumed a new-born infant will acquire a fraction of their mother’s anti-parasite and clinical immunity.
+Individuals begin life susceptible to infection but with partial maternal immunity determined by the level of immunity in women of childbearing age.
 The maternal immunity will protect new born infant from infections, and will decay exponential after a period of time.
-\[
+\begin{equation}
 	I_{maternal} = e^{- \frac{a}{d_{maternal}}}
-	.\]
+\end{equation}
 
 Here,
 
@@ -736,9 +769,11 @@ Here,
 	{denotes the age.}
 \end{parameter}
 
+Maternal immunity decays in the first six months of life, thereby increasing susceptibility to disease.
+
 \paragraph{Acquired immunity}%
 \label{par:acquired_immunity}
-Acquired immunity.`\ ' including clinical immunity and \improvement{add another type}.
+Acquired immunity, including clinical immunity and \improvement{add another type}.
 Acquired immunity alters the likelihood that infection results in clinical disease, modifies onward infectivity to mosquitoes, affects the detectability of infection, and modifies the duration of parasitaemia.
 
 \paragraph{Acquisition}%
@@ -1356,10 +1391,10 @@ Speed of loss rate of \gls{llins} adherence\cite{White2018b}\ldots was studies b
 Formal techniques employed included Latin Hypercube sampling, regression tree analysis, and one-way and probabilistic sensitivity analysis.
 
 \begin{figure}[htpb]
-  \centering
-  \includegraphics[width=\textwidth]{ross-mcdonald-sensitivity}
-  \caption{An example of Sensitivity Analysis with Ross-McDonald Model}
-  \label{fig:ross-mcdonald-sensitivity}
+	\centering
+	\includegraphics[width=\textwidth]{ross-mcdonald-sensitivity}
+	\caption{An example of Sensitivity Analysis with Ross-McDonald Model}
+	\label{fig:ross-mcdonald-sensitivity}
 \end{figure}
 
 \subsection{Performance metrics}%
