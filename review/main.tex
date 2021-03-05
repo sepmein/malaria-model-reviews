@@ -401,6 +401,18 @@ Malaria mathematical models are generally classified as deterministic or stochas
 Both deterministic model and stochastic models utilized the concept of compartmental modeling implementation.
 Both paradigms of models are useful and have their place in our understanding of malaria and in planning for malaria control.
 
+\begin{table}[htpb]
+  \centering
+  \caption{Model Comparison}
+  \label{tab:model_comparison}
+  \begin{tabular}{cccccc}
+  \toprule
+  model & host & vector & outcome &  & \\
+  \midrule
+  \cite{Briet2013} & S/I & D & NHB,episodes averted & & \\
+  \bottomrule
+  \end{tabular}
+\end{table}
 Other forecasting approaches, including statistical modeling, and machine-learning methods are also being applied in this field.
 The statistical methods included generalized linear models, Auto-Regressive Integrated Moving Average (ARIMA) models\cite{box2015time,Anokye2018}, and Holt-Winters models\cite{Chatfield1978}.
 Other authors\cite{Toh2021a,Libbrecht2015,Nkiruka2021,Verma2020,Kim2019,Khameneh2014,Ebhuoma2018,Hancock2020} predicted malaria incidence using neural networks, a machine-learning technique.
@@ -412,7 +424,7 @@ Deterministic models assume the system follows predefined and stationary rules w
 For example if 1,000 individuals each have a 90\% chance of surviving 1 year, then the deterministic model reasonably assume that 900 of them will indeed survive.
 
 This paradigms assume the randomness is neglectable and combine the average behavior of the system and consider this behavior as a holism perspective.
-For the high or intermediate transmission settings, plus systems that do not need to explore heterogeneities, deterministic is a reasonably choice.
+For the high or moderate transmission settings, plus systems that do not need to explore heterogeneities, deterministic is a reasonably choice.
 Traditionally, since the scale of malaria incidence was quite large globally, most malaria mathematical models tended to be population-based, treating all individuals with compartment.
 Within each compartment, individual were treated as identical.
 
@@ -578,6 +590,7 @@ These small steps in documentation would allow for increased verification and va
 \subsection{Softwares}
 
 \begin{itemize}
+  \item RStan
 	\item ShinyStan
 	\item OpenMalaria
 	      %\item \href{https://github.com/MWhite-InstitutPasteur/Pvivax_IBM}{Pvivax_IBM}
@@ -683,7 +696,8 @@ Relationship between age and incidence was compared between models.
 
 Human population data was often lack in some areas.
 Some studies estimated the missing data by using data from other similar countries.
-Others estimated the age through satellite observations.
+The age structure of population is drawn from an statistical distribution(or more specifically an exponential distribution, due to this type of distribution fits well to \gls{ssa} age structure) from a specific country, for example Tanzania dataset\cite{Sherrard-Smith2018b} were popular in some studies.
+Others\cite{Adimi2010} estimated the age through satellite observations.
 Study combined land cover and census in East Africa and generated high resolution population maps for low income nations.
 
 
@@ -705,7 +719,7 @@ Thus, in the malaria model implementation, inclusion of birth in the model will 
 Increasing human mobility is creating highly favorable conditions for the persistence of diseases being targeted for elimination.
 However, host mobility is not a top priority factor for the malaria model.
 Models assumed an enclosed area with a constant population for simplification.
-That was because in the high or intermediate disease transmission setting, disease important act as a less significant proportion of total infections.
+That was because in the high or moderate disease transmission setting, disease important act as a less significant proportion of total infections.
 
 But in malaria elimination scenario, imported cases is an most important threat.
 Modeling population flow in that case would be helpful for countries in elimination stage to quantify the threats.
@@ -730,6 +744,7 @@ In particular, anti-parasite immunity is assumed to have two effects:
 	\item reducing the probability that a blood-stage infection will achieve sufficiently high density to be detectable by light microscopy;
 	\item increasing the rate at which low density infections are cleared (rPCR).
 \end{itemize}
+Acquired immunity alters the likelihood that infection results in clinical disease, modifies onward infectivity to mosquitoes, affects the detectability of infection, and modifies the duration of parasitaemia.
 Clinical immunity is assumed to reduce the probability that a high-density blood-stage infection will progress to cause a symptomatic episode of clinical malaria.
 
 The immunity was separated into several categories:
@@ -743,10 +758,28 @@ Immunity could be further dissected into four categories:
 \end{itemize}
 Infection-blocking immunity and anti-parasite immunity are both exposure-driven.
 whilst anti-parasite immunity is assumed to develop with age, conditional on having been exposed.
+Griffin et al.\cite{Griffin2010} classified infection-blocking immunity as pre-erythrocytic immunity which will result in the reduction in the probability that infection is established following an infectious challenge.
 
+\paragraph{Acquisition}%
+\label{par:acquisition}
+The acquisition of immunity is assumed to be age and exposure dependent.
+Study\cite{White2018b} assumed that both primary infections and relapses contribute to the acquisition of immunity and each new infection will boost immunity.
+The boosting level is based on the \gls{foi} and refractory period.
+
+\paragraph{decay}%
+\label{par:decay}
+Specific antibodies against \textit{Plasmodium} decay over time.
+
+\improvement{TODO: among xx studied paper, xx dictated the rate of decay of immunity level}
+Different versions of models describe the rate of immunity decay differently.
+Exponential decay of naturally acquired immunity was implemented in Imperial models.
+
+\improvement{TODO: Describe the decay rate mathematically}
+
+Immunity level then will be incorporated into models and will affect the probability that an infection becomes detectable, the duration of a blood-stage infection.
 \paragraph{Maternal Immunity}%
-\label{par:maternal_immunity}
-Children will get the maternal antigen from mother.
+\label{subsec:maternal_immunity}
+Children will get the maternal antibodies from their mother.
 Model assumed a new-born infant will acquire a fraction of their mother’s anti-parasite and clinical immunity.
 Individuals begin life susceptible to infection but with partial maternal immunity determined by the level of immunity in women of childbearing age.
 The maternal immunity will protect new born infant from infections, and will decay exponential after a period of time.
@@ -771,35 +804,24 @@ Here,
 
 Maternal immunity decays in the first six months of life, thereby increasing susceptibility to disease.
 
-\paragraph{Acquired immunity}%
-\label{par:acquired_immunity}
-Acquired immunity, including clinical immunity and \improvement{add another type}.
-Acquired immunity alters the likelihood that infection results in clinical disease, modifies onward infectivity to mosquitoes, affects the detectability of infection, and modifies the duration of parasitaemia.
+\paragraph{Anti-infection immunity}
+\thiswillnotshow{gai}
+Individuals become infected at a rate determined by the \gls{foi} in the population, which is determined by the ratio of vectors to humans, the biting rate per mosquito on humans, the proportion of infectious mosquitoes in the vector population, and the person’s level of \textbf{anti-infection immunity}.
 
-\paragraph{Acquisition}%
-\label{par:acquisition}
-The \gls{abm} explicitly depicted the acquisition of both anti-parasite and clinical immunity to be age and exposure dependent.
+%\paragraph{Acquired immunity}%
+%\label{par:acquired_immunity}
+%Acquired immunity, including clinical immunity and \improvement{add another type}.
 
-\paragraph{decay}%
-\label{par:decay}
-Specific antibodies against \textit{Plasmodium} decay over time.
-
-\improvement{TODO: among xx studied paper, xx dictated the rate of decay of immunity level}
-Different versions of models describe the rate of immunity decay differently.
-Exponential decay of naturally acquired immunity was implemented in Imperial models.
-
-\improvement{TODO: Describe the decay rate mathematically}
-
-Immunity level then will be incorporated into models and will affect the probability that an infection becomes detectable, the duration of a blood-stage infection.
 
 \section{Vector}%
 \label{sec:vector}
 Models most commonly assessed the interventions impacting vector mortality, such \gls{irs}, \gls{itn} and larval source management.
-Detailed implementation of vector life cycle and entomology were common.
+Detailed implementation of vector life cycle and entomology were common in model implementation.
 Mosquito behaviors, such as lifespan, density-dependent larval development, feeding and resting behavior, feeding habits, movement patterns and biting frequency, often modeled in detail.
+More models implemented vector dynamics as a stochastic version of compartmental model\cite{Sherrard-Smith2018b}, but only a few explicitly modeled vector individually as \gls{abm}. 
 When models also included a spatial component, malaria transmission generally required vector and host to be co-located.
 
-\subsection{Entomology}
+\subsection{Gonotrophic Cycle}
 Simulations used a ‘decision tree’ to represent the timing of movements and other necessary actions.
 The gonotrophic cycle of a female mosquito begins with a blood meal taken from a host.
 The mosquito will rest and wait for digestion.
@@ -818,71 +840,113 @@ The duration of the larval period depends mainly on temperature, lasts 7-15 days
 \end{figure}
 
 \subsection{Adult Mosquitoes}
+Each adult vector can be in one of three states, susceptible($S$), latently infected(E), and infectious(I).
+The number of mosquito in susceptible group will increase as larvae metamorphose into adult at a rate, which is decided by the birth rate of a specific mosquito species and environment capacity and decrease as susceptible mosquito die at some rate and be infected through a bite from an infected host.
+Model use \gls{foi} from human to mosquito define the rate of mosquito been infected.
+This rate will be influenced by multiple factors, such as the intervention implemented and malaria prevalence in host group.
+\begin{equation}
+  \frac{dS_M}{dt} = \beta(t) - \Lambda_M S_M - \mu S_M
+\end{equation}
+where,
+\begin{centering}
+  $\Lambda_M$ - \gls{foi} from host to vector \\
+  $\mu$ - death rate of mosquito\\
+  $\beta(t)$ - birth rate at time  $t$\\
+\end{centering}
 
-\subsubsection{Species}
+The infected adult mosquitoes then move into the latently infected group.
+After \gls{eip}, these mosquitoes finally move into infected group.
+\begin{align}
+  \frac{dE_M}{dt} & = \Lambda_M S_M - \Lambda_M (t- \tau_M) S_M (t - \tau_M) P - \mu E_M\\
+  \frac{dI_M}{dt} & = \Lambda_M (t- \tau_M) S_M (t - \tau_M) P - \mu I_M
+\end{align}
+
+Where,
+\begin{centering}
+  $\tau_M$ - \gls{eip} \\
+\end{centering}
+
+\subsubsection{Parameters of adult mosquito in models}
+\paragraph{Species}%
+\label{par:species}
+Some studies explicitly toke heterogeneities of different mosquito species into the model.
 \textit{An. gambiae} is the dominated species used in most models.
 However different species, including \textit{An. arabiensis}, \textit{An. vagus}, \textit{An. stephensi}, \textit{An. darlingi}, were also included in some other models.
 Different combinations of species were also common in the implementation.
 The host preferential and feeding habits of different species are the most important factors affect the intervention effectiveness.
 Generally, the lower proportion of human blood feeding and night blood feeding, the lower the efficiency of the intervention targeted at protection in night, such as \gls{llins}.
 
-\subsubsection{Endophily}
+Different species vary in entomology indexes.
+For example, comparing to \textit{An. gambiae}, \textit{An. arabiensis} has an significantly lower rate in \gls{hbi}.
+
+\paragraph{Endophily}%
+\label{par:endophily}
+affect residual transmission and will influence the effect of indoor residual spraying.
 Research papers often take endophily as a fixed parameter in the model, which means for each different vector there is one according level of endophily.
 
-And the model used in the research often use a
+Does endophily change over time or based on the seasons?
+In a lower temperature,  some vector species tend to reside in the indoor environment.
+But this variation does not covered in the papers.
 
-Does endophily change over time or based on the seasons? Often in the cold weather, some vector species tend to reside in the indoor environment. Not covered in the papers.
+\paragraph{Parasite density}%
+\label{par:parasite_density}
+Most studies assumed that all the vectors with salivary gland sporozoites are equally infectious.
+The level of infectiousness was expressed as \gls{foi} from vector to human, which was calculated as same after \gls{eip}.
 
-\improvement{Create a database from research papers to see the different settings of endophily of vector species}
+Churcher et al.\cite{Churcher2017a} demonstrated a dose-dependency for probability of infection.
+Vectors with greater number of sporozoites have a higher possibility to cause infection.
+The heterogeneity in parasite density might be an another parameters that could be implemented in other models.
 
-\paragraph{Daily survival rate}
-
-\paragraph{Human visiting rate}
-
-\paragraph{Extrinsic Incubation Period}
-Average incubation period in days
-Extrinsic incubation period
-Features describing a group of vectors (may influenced by interventions)
-The composition of the species of given an area
-The distribution of vectors
-The overall birth rates of vectors
-Types of birth rates defined in the papers
-fixed (constant)
-The distribution of the length of feeding cycle
-Related to species, interventions used
-\improvement{add two figures(using normal distribution)}
-Distribution before intervention
-Distribution after intervention
-
-The distribution of the life span of a given group
-
-\paragraph{Cycling Repeating Rate}
-Cycling repeating rate
-
-\paragraph{Flying ability}
-How long could it fly in a given time
-
-Mathematical function:
-
-A spatial distribution for a given time, e.g.
-
-The ability could determine whether an infectious bite could be transmitted from one to another in a long distance.
-
-\improvement{TODO:
-	Add distribution example
-	Add mathematical function
-	Collect information from papers and create a database}
-\paragraph{HBI}
-\gls{hbi}
-Related to species, intervention
-Usage of \gls{llins} and/or \gls{irs} will discourage human biting divert more bites onto non-human hosts
-
-The birth rates may vary in the different settings.
-E.g. `\ ' for a colony of germ in the, the reproduction process follows to a logistic growth:
-\improvement{TODO: added an example figure of logistic growth}
-
-Does the birth rate of vectors follow the same line?
-
+%\improvement{Create a database from research papers to see the different settings of endophily of vector species}
+%
+%\paragraph{Daily survival rate}
+%
+%\paragraph{Human visiting rate}
+%
+%\paragraph{Extrinsic Incubation Period}
+%Average incubation period in days
+%Extrinsic incubation period
+%Features describing a group of vectors (may influenced by interventions)
+%The composition of the species of given an area
+%The distribution of vectors
+%The overall birth rates of vectors
+%Types of birth rates defined in the papers
+%fixed (constant)
+%The distribution of the length of feeding cycle
+%Related to species, interventions used
+%\improvement{add two figures(using normal distribution)}
+%Distribution before intervention
+%Distribution after intervention
+%
+%The distribution of the life span of a given group
+%
+%\paragraph{Cycling Repeating Rate}
+%Cycling repeating rate
+%
+%\paragraph{Flying ability}
+%How long could it fly in a given time
+%
+%Mathematical function:
+%
+%A spatial distribution for a given time, e.g.
+%
+%The ability could determine whether an infectious bite could be transmitted from one to another in a long distance.
+%
+%\improvement{TODO:
+%	Add distribution example
+%	Add mathematical function
+%	Collect information from papers and create a database}
+%\paragraph{HBI}
+%\gls{hbi}
+%Related to species, intervention
+%Usage of \gls{llins} and/or \gls{irs} will discourage human biting divert more bites onto non-human hosts
+%
+%The birth rates may vary in the different settings.
+%E.g. `\ ' for a colony of germ in the, the reproduction process follows to a logistic growth:
+%\improvement{TODO: added an example figure of logistic growth}
+%
+%Does the birth rate of vectors follow the same line?
+%
 \subsection{Larval}
 
 Larvae feeds on yeasts, bacteria and organic matters.
@@ -926,6 +990,7 @@ Discriminating dose bioassays (WHO tube assay, WHO cone assay, CDC bottle assay)
 Although the simple bioassay has its limitations, it provides a useful measure to link the severity of mosquito insecticide resistance estimated in the field to the results of experimental hut trials evaluating new products.
 
 Strong association between the level of resistance and mosquito mortality observed in the experimental hut trial\cite{Sherrard-Smith2018b}.
+And strong correlation between direct protection against feeding and the bioassay result was analyzed by one study\cite{Briet2013}.
 \unsure{to understand how they made the connection: did the researcher match the bioassay result to the experimental hut trial data? Find conclusions and methods in the paper and summarized it in this document.}
 \unsure{how does mosquito resistance affect the repel rate? Why do the mosquitoes don't like the pyrethroid  smell? And why does the mosquitoes' repel rate drops down when the resistance level goes up?}
 
@@ -938,6 +1003,11 @@ The impact of reduced susceptibility of mosquito:
 \end{itemize}
 
 \change{add the mathematical equation that describe the decrease.}
+
+That will result in a higher proportion in successful blood-feeding rate because of more mosquitoes fed previously fed and survive.
+It will also cause a lower rate of deterrence and mortality.
+
+Therefore overall cost-effectiveness will be lower.
 
 One comment on the second point is that it seems there are some certain level of threshold for the resistance level and active ingredient. When combining these two factors, we might able to calculate the overall efficacy of the effective length.
 
@@ -955,6 +1025,9 @@ Bioassay:
 	\item Mechanism Bioassay
 	\item Non-standard Bioassay
 \end{itemize}
+
+Most studies did not incorporate resistance gene evolution into the model.
+Mohammed-Awel et al./cite{Mohammed-Awel2019} developed a model and simulated the relationship of the usage of interventions and the frequency of resistant allele at equilibrium in the community. 
 
 \section{Force of Infection and EIR}%
 \label{sec:force_of_infection_and_eir}
@@ -1063,7 +1136,22 @@ Prevalence results from Uganda \gls{rct}\cite{Staedke2020}:
 \paragraph{Half life}%
 \label{par:half_life}
 
-A half-life of effectiveness 2.64 years
+Different values of \gls{llins} half-life was used in studies
+
+\begin{table}[htpb]
+  \centering
+  \caption{Different settings for \gls{llins} in models}
+  \label{tab:different_settings_for_llins}
+  \begin{tabular}{cSc}
+  \toprule
+  study & {half-life} & Way of distribution\\
+  \midrule
+  \cite{Briet2013} & 4 & Mass distribution \\
+  \cite{Griffin2010} & 2.64 & increased to 80\% within 5 y and a new net was distributed to individuals every 5 y. In the second, we assumed almost immediate distribution at 80\% coverage, redistribution every 5 y, plus delivery of a net to 80\% of newborn infants and an average of 0.75 adults for every infant who receives a net \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+, of effectiveness 2.64 years
 
 From Tanzania\cite{Protopopoff2018} \gls{rct}, the permethrin and \gls{pbo} concentration dropped at a steady rate for both standard \gls{llins} and Pyrethroid-PBO \gls{llins}:
 
@@ -1123,6 +1211,10 @@ Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the 
 	\end{tabular}
 \end{center}
 
+\paragraph{Hole index}%
+\label{par:hole_index}
+
+
 \subsection{PBO}
 
 \[
@@ -1141,15 +1233,41 @@ Usage attrition from Uganda\cite{Staedke2020} showed a much slower trend in the 
 	\gamma_h = \frac{e_{\gamma_h'}}{1+e^{\gamma_h'}}
 	.\]
 
-\subsection{IRS}
+\subsection{\texorpdfstring{\gls{irs}}{IRS}}
+\gls{irs} is an important part of malaria control.
+Mathematical models considered following factors of \gls{irs}:
+
+\begin{itemize}
+  \item Initial efficacy on mosquito populations. For example, the ability to kill or deter vector from entering;
+  \item Insecticide gradients, and their difference in efficacy;
+  \item Residual half life;
+  \item The local malaria endemicity, seasonality of transmission and timing of applying;
+  \item The cost and cost-effectiveness of \gls{irs}.
+\end{itemize}
+
+Product-induced vector mortality, blood-feeding inhibition, exophily and deterrence were particularly statistically studied and considered as key indicators due to the accessibility of \gls{eht} data.
+These four indicators were explicitly considered as the starting point to assess the efficacy of \gls{irs} in malaria control and was modeled in the relative studies.
+
 Four insecticide gradients, pyrethroids (including deltamethrin, lambda-cyhalothrin and alpha-cypermethrin) are the main insecticides used by \gls{nmcp} for \gls{irs}.
+Substantial variation in the initial efficacy of active ingredient was summarized in the study \cite{Sherrard-Smith2018b}.
+
+Temporal characteristic of \gls{irs} was studied by fitting to \\gls{eht} dataset.
+
+Factors including:
+\begin{itemize}
+  \item Type of wall surface: cement, mud, wood, concretes;
+  \item Application location: walls, ceiling, both;
+  \item Does \gls{llins} also applied in the area?
+  \item Mosquito species;
+  \item Active ingredient of \gls{irs}.
+\end{itemize}
 
 \section{Environments}%
 \label{sec:environments}
 Core environmental aspects related to vector activity were included, such as water sources for oviposition (egg-laying)\cite{Bomblies2008}, houses for blood meal locations\cite{Gu2009a}, and meteorological data to account for seasonal patterns in transmission\cite{Depinay2004}.
 Rainfall and temperature data were regularly used; model questions included the impact of wet season lengths\cite{Endo2016a} and hysteresis\cite{Yamana2017} on vector populations.
 
-Environmental factors such as temperature and rainfall at different times was incorporated in some models.
+Environmental factors such as temperature, rainfall, and vegetation density\cite{Gomez-Elipe2007} at different times was incorporated in some models.
 
 
 \section{Costs}
@@ -1267,6 +1385,7 @@ Studies calibrate part of parameter set by assuming the region has reached the e
 
 \subsection{Experimental Hut Trail}
 Experimental hut studies typically report 24-h productinduced: mortality, blood-feeding inhibition, exophily and deterrence.
+unfed alive (UA), unfed dead (UD), fed alive (FA) and fed dead (FD) female
 
 Outcome:
 
@@ -1422,6 +1541,7 @@ The Receiver Operating Characteristics(ROC) curve was plotted between the false-
 \paragraph{Akaike's information criterion}%
 \label{par:akaike_s_information_criterion}
 
+\subsubsection{Regression metric}
 \paragraph{Least-squares estimation}%
 \label{par:least_squares_estimation}
 R code for least squares estimation calculation:
@@ -1445,14 +1565,26 @@ SIR_SSQ <- function(parameters, dat) {
     }
 \end{minted}
 
-\subsection{Comparing to Randomized Control Trails}
+\paragraph{general Gauss-Markov theorem}%
+\label{par:general_gauss_markov_theorem}
+Study\cite{Chatterjee2009} applied this theorem to estimate the confidence intervals for each data points, and find out the degree of confidence to be entrusted for model predictions.
 
+\subsection{Comparing to Randomized Control Trails}
+Transmission models provide a means of converting entomological measures of efficacy into a prediction of impacts on public health.
 \gls{rct} is the gold standard for assessing intervention efficacy and effectiveness in the field.
-Results from \gls{rct} were compared to the model predictions by modellers to determine whether parametrisations satisfactorily match the observed red data\cite{Sherrard-Smith2018b}.
+Results from \gls{rct} were compared to the model predictions by modelers to determine whether parameterizations satisfactorily match the observed red data\cite{Sherrard-Smith2018b}.
 Mean, as well as maximum and minimum impact can be generated by models for assessing.
 The parameter sets could be fitted to different \gls{eht} and then compare the results from \gls{eht}.
+Study{Sherrard-Smith2018b} compared the model prediction with best fit model to two \gls{rct}s.
+The predicted prevalence was visually compared to the actual data.
+
+When comparing to the real world \gls{rct} dataset, the uncertainty is important.
+Generally, a narrower range of uncertainty considered better.
+Part of the uncertainty was caused by natural stochasticity, thus not possible to reduce.
+Analysis and decomposition the uncertainty level might be an important aspect for us to gain a deeper understanding of the model output.
 
 \subsection{Cross Comparing}
+
 \subsection{Predict Future Results}
 
 \section{Method}%
